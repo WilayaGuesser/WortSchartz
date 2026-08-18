@@ -120,88 +120,90 @@
     }
   </style>
 </head>
-<body class="bg-amber-100/80 text-slate-800 p-3 sm:p-8 min-h-screen flex flex-col justify-center items-center">
+<body class="bg-amber-100/80 text-slate-800 p-2 sm:p-8 min-h-screen flex flex-col justify-center items-center">
 
   <div class="w-full max-w-2xl cartoon-card bg-white overflow-hidden my-auto animate-pop relative">
     
     <!-- HEADER -->
-    <header class="bg-amber-300 border-b-4 border-slate-800 p-4 sm:p-5 flex flex-col sm:flex-row justify-between items-center gap-3 relative overflow-hidden">
+    <header class="bg-amber-300 border-b-4 border-slate-800 p-3 sm:p-5 flex flex-col sm:flex-row justify-between items-center gap-3 relative overflow-hidden">
       <div class="flex items-center gap-2 sm:gap-3 w-full sm:w-auto justify-between sm:justify-start">
         <div class="flex items-center gap-2">
-          <span class="text-3xl sm:text-4xl inline-block">🧠</span>
+          <span class="text-2xl sm:text-4xl inline-block">🧠</span>
           <div>
-            <h1 class="text-xl sm:text-3xl font-bold tracking-wide text-slate-900 leading-none">WortSchatz!</h1>
-            <p class="text-slate-700 text-xs sm:text-sm font-semibold mt-1">Vocabulary App!</p>
+            <h1 class="text-lg sm:text-3xl font-bold tracking-wide text-slate-900 leading-none">WortSchatz!</h1>
+            <p class="text-slate-700 text-[11px] sm:text-sm font-semibold mt-1">Vocabulary App!</p>
           </div>
         </div>
         
-        <button id="homeBtn" onclick="playSound('click'); renderHomeView()" class="hidden cartoon-btn bg-indigo-400 hover:bg-indigo-500 text-white text-xs sm:text-sm px-3 rounded-xl sm:hidden">
+        <button id="homeBtn" onclick="playSound('click'); renderHomeView()" class="hidden cartoon-btn bg-indigo-400 hover:bg-indigo-500 text-white text-xs px-3 rounded-xl sm:hidden">
           🏠 Home
         </button>
       </div>
 
       <!-- STREAK & STATS HEADER DISPLAY -->
-      <div class="flex items-center gap-2.5 w-full sm:w-auto justify-end flex-wrap">
-        <div class="bg-white border-2 border-slate-800 rounded-xl px-2.5 py-1 text-center flex items-center gap-1.5 shadow-sm" title="Total Words Across Workspaces">
-          <span class="text-lg">📚</span>
+      <div class="grid grid-cols-4 sm:flex items-center gap-1.5 sm:gap-2.5 w-full sm:w-auto justify-between sm:justify-end">
+        <div class="bg-white border-2 border-slate-800 rounded-xl px-2 py-1 text-center flex flex-col sm:flex-row items-center gap-1 shadow-sm" title="Total Words Across Workspaces">
+          <span class="text-sm sm:text-lg">📚</span>
           <div class="text-left">
-            <div class="text-[10px] font-black uppercase text-slate-500 leading-tight">Total Words</div>
-            <div id="totalWordsCount" class="text-xs sm:text-sm font-extrabold text-indigo-600 leading-none">0 Words</div>
+            <div class="text-[9px] sm:text-[10px] font-black uppercase text-slate-500 leading-tight">Total</div>
+            <div id="totalWordsCount" class="text-[11px] sm:text-sm font-extrabold text-indigo-600 leading-none">0</div>
           </div>
         </div>
 
-        <div class="bg-white border-2 border-slate-800 rounded-xl px-2.5 py-1 text-center flex items-center gap-1.5 shadow-sm" title="Daily Activity Streak">
-          <span class="text-lg">🔥</span>
+        <div class="bg-white border-2 border-slate-800 rounded-xl px-2 py-1 text-center flex flex-col sm:flex-row items-center gap-1 shadow-sm" title="Daily Activity Streak">
+          <span class="text-sm sm:text-lg">🔥</span>
           <div class="text-left">
-            <div class="text-[10px] font-black uppercase text-slate-500 leading-tight">Streak</div>
-            <div id="streakCount" class="text-xs sm:text-sm font-extrabold text-orange-600 leading-none">0 Days</div>
+            <div class="text-[9px] sm:text-[10px] font-black uppercase text-slate-500 leading-tight">Streak</div>
+            <div id="streakCount" class="text-[11px] sm:text-sm font-extrabold text-orange-600 leading-none">0d</div>
           </div>
         </div>
 
-        <div class="bg-white border-2 border-slate-800 rounded-xl px-2.5 py-1 text-center flex items-center gap-1.5 shadow-sm" title="Mastered Words (Box 5)">
-          <span class="text-lg">🎓</span>
+        <div class="bg-white border-2 border-slate-800 rounded-xl px-2 py-1 text-center flex flex-col sm:flex-row items-center gap-1 shadow-sm" title="Mastered Words (Box 5)">
+          <span class="text-sm sm:text-lg">🎓</span>
           <div class="text-left">
-            <div class="text-[10px] font-black uppercase text-slate-500 leading-tight">Mastered</div>
-            <div id="masteredCount" class="text-xs sm:text-sm font-extrabold text-emerald-600 leading-none">0 Words</div>
+            <div class="text-[9px] sm:text-[10px] font-black uppercase text-slate-500 leading-tight">Master</div>
+            <div id="masteredCount" class="text-[11px] sm:text-sm font-extrabold text-emerald-600 leading-none">0</div>
           </div>
         </div>
 
-        <button id="muteBtn" onclick="toggleMute()" class="cartoon-btn bg-white hover:bg-slate-100 text-slate-800 text-base px-2.5 rounded-xl" title="Toggle Sound Effects">
-          🔊
-        </button>
-        <button id="homeBtnDesktop" onclick="playSound('click'); renderHomeView()" class="hidden sm:inline-flex cartoon-btn bg-indigo-400 hover:bg-indigo-500 text-white text-xs sm:text-sm px-3 sm:px-4 rounded-xl">
-          🏠 Home
-        </button>
+        <div class="flex items-center gap-1 justify-self-end">
+          <button id="muteBtn" onclick="toggleMute()" class="cartoon-btn bg-white hover:bg-slate-100 text-slate-800 text-sm sm:text-base px-2 rounded-xl" title="Toggle Sound Effects">
+            🔊
+          </button>
+          <button id="homeBtnDesktop" onclick="playSound('click'); renderHomeView()" class="hidden sm:inline-flex cartoon-btn bg-indigo-400 hover:bg-indigo-500 text-white text-xs sm:text-sm px-3 sm:px-4 rounded-xl">
+            🏠 Home
+          </button>
+        </div>
       </div>
     </header>
 
     <!-- MAIN APP CONTAINER -->
-    <main id="appContainer" class="p-4 sm:p-6">
+    <main id="appContainer" class="p-3 sm:p-6">
       <!-- Dynamic Views Inject Here -->
     </main>
 
   </div>
 
   <!-- CONJUGATION TABLE MODAL OVERLAY -->
-  <div id="conjugationModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-center justify-center p-4 hidden animate-pop">
-    <div class="cartoon-card bg-amber-50 w-full max-w-md p-5 sm:p-6 shadow-2xl relative max-h-[90vh] flex flex-col">
+  <div id="conjugationModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-center justify-center p-3 sm:p-4 hidden animate-pop">
+    <div class="cartoon-card bg-amber-50 w-full max-w-md p-4 sm:p-6 shadow-2xl relative max-h-[90vh] flex flex-col">
       <div class="flex justify-between items-center pb-3 border-b-3 border-slate-800 mb-3 shrink-0">
         <div>
-          <span class="text-xs font-black uppercase tracking-wider bg-teal-200 text-teal-900 px-2 py-0.5 rounded border border-slate-800">Conjugation Table</span>
-          <h3 id="modalVerbTitle" class="text-xl sm:text-2xl font-black text-slate-900 mt-1">machen</h3>
+          <span class="text-[10px] sm:text-xs font-black uppercase tracking-wider bg-teal-200 text-teal-900 px-2 py-0.5 rounded border border-slate-800">Conjugation Table</span>
+          <h3 id="modalVerbTitle" class="text-lg sm:text-2xl font-black text-slate-900 mt-1">machen</h3>
         </div>
         <button onclick="closeConjugationModal()" class="cartoon-btn bg-rose-300 hover:bg-rose-400 text-slate-900 px-3 rounded-xl text-sm">
           ✕
         </button>
       </div>
       
-      <p class="text-xs font-bold text-slate-600 mb-3 shrink-0">Automatically generated conjugations. You can customize any cell and save!</p>
+      <p class="text-[11px] sm:text-xs font-bold text-slate-600 mb-3 shrink-0">Automatically generated conjugations. You can customize any cell and save!</p>
 
       <div id="modalTableContent" class="space-y-2 mb-4 overflow-y-auto pr-1 flex-1">
         <!-- Injected table rows with inputs -->
       </div>
 
-      <div class="flex gap-2 shrink-0">
+      <div class="flex flex-col sm:flex-row gap-2 shrink-0">
         <button onclick="saveUserConjugationTable()" class="cartoon-btn flex-1 bg-emerald-400 hover:bg-emerald-500 text-slate-900 font-bold rounded-xl py-2 text-sm">
           Save Customization 💾
         </button>
@@ -213,27 +215,27 @@
   </div>
 
   <!-- IMPORT WORDS MODAL OVERLAY -->
-  <div id="importModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-center justify-center p-4 hidden animate-pop">
-    <div class="cartoon-card bg-amber-50 w-full max-w-lg p-5 sm:p-6 shadow-2xl relative max-h-[90vh] flex flex-col">
+  <div id="importModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-center justify-center p-3 sm:p-4 hidden animate-pop">
+    <div class="cartoon-card bg-amber-50 w-full max-w-lg p-4 sm:p-6 shadow-2xl relative max-h-[90vh] flex flex-col">
       <div class="flex justify-between items-center pb-3 border-b-3 border-slate-800 mb-3 shrink-0">
         <div>
-          <span class="text-xs font-black uppercase tracking-wider bg-indigo-200 text-indigo-900 px-2 py-0.5 rounded border border-slate-800">Batch Import</span>
-          <h3 class="text-xl sm:text-2xl font-black text-slate-900 mt-1">📥 Import Word List</h3>
+          <span class="text-[10px] sm:text-xs font-black uppercase tracking-wider bg-indigo-200 text-indigo-900 px-2 py-0.5 rounded border border-slate-800">Batch Import</span>
+          <h3 class="text-lg sm:text-2xl font-black text-slate-900 mt-1">📥 Import Word List</h3>
         </div>
         <button onclick="closeImportModal()" class="cartoon-btn bg-rose-300 hover:bg-rose-400 text-slate-900 px-3 rounded-xl text-sm">
           ✕
         </button>
       </div>
       
-      <p class="text-xs font-bold text-slate-600 mb-2 shrink-0">
-        Paste your list below. Format each line as: <code class="bg-white px-1 py-0.5 rounded border border-slate-800 font-mono">German | English | Example Sentence</code> (Example sentence is optional).
+      <p class="text-[11px] sm:text-xs font-bold text-slate-600 mb-2 shrink-0">
+        Paste your list below. Format: <code class="bg-white px-1 py-0.5 rounded border border-slate-800 font-mono">German | English | Example</code>.
       </p>
 
       <div class="mb-3 shrink-0">
-        <textarea id="importTextarea" rows="6" placeholder="lernen | to learn | Ich lerne Deutsch every day.&#10;sprechen | to speak | Sprichst du Deutsch?" class="cartoon-input w-full p-3 rounded-xl text-xs sm:text-sm font-mono bg-white"></textarea>
+        <textarea id="importTextarea" rows="5" placeholder="lernen | to learn | Ich lerne Deutsch every day.&#10;sprechen | to speak | Sprichst du Deutsch?" class="cartoon-input w-full p-3 rounded-xl text-xs sm:text-sm font-mono bg-white"></textarea>
       </div>
 
-      <div class="flex gap-2 shrink-0">
+      <div class="flex flex-col sm:flex-row gap-2 shrink-0">
         <button onclick="processBatchImport()" class="cartoon-btn flex-1 bg-emerald-400 hover:bg-emerald-500 text-slate-900 font-bold rounded-xl py-2 text-sm">
           Import Words 🚀
         </button>
@@ -293,7 +295,7 @@
           const noteOsc = audioCtx.createOscillator();
           const noteGain = audioCtx.createGain();
           noteOsc.connect(noteGain);
-          noteGain.connect(noteGain.destination || audioCtx.destination);
+          noteGain.connect(audioCtx.destination);
 
           noteOsc.type = 'triangle';
           noteOsc.frequency.setValueAtTime(freq, now + idx * 0.06);
@@ -374,7 +376,7 @@
       let stemDu = stem;
       let stemEr = stem;
 
-      if (stem.endsWith('e') && !['stehen', 'gehenden'].includes(v)) {
+      if (stem.endsWith('e') && !['stehen'].includes(v)) {
         let baseWithoutLastE = stem.slice(0, -1);
         if (baseWithoutLastE.endsWith('spr')) {
           stemDu = 'sprich';
@@ -417,7 +419,7 @@
 
     const SRS_INTERVALS = [0, 1, 3, 7, 14, 30]; // Box 1-5
 
-    // DEFAULT DATA STRUCTURE WITH RESTORED WORKSPACES, DECKS & WORDS
+    // DEFAULT DATA STRUCTURE
     const defaultWorkspaces = [
       { id: 'ws_a1', name: '🇩🇪 A1 - Beginner', color: 'bg-emerald-200' },
       { id: 'ws_a2', name: '🌍 A2 - Elementary', color: 'bg-sky-200' }
@@ -483,14 +485,14 @@
       const masteredElem = document.getElementById('masteredCount');
       const totalWordsElem = document.getElementById('totalWordsCount');
 
-      if (streakElem) streakElem.innerText = `${streakData.count} ${streakData.count === 1 ? 'Day' : 'Days'}`;
+      if (streakElem) streakElem.innerText = `${streakData.count}d`;
       if (masteredElem) {
         const mastered = words.filter(w => w.box === 5).length;
-        masteredElem.innerText = `${mastered} ${mastered === 1 ? 'Word' : 'Words'}`;
+        masteredElem.innerText = `${mastered}`;
       }
       if (totalWordsElem) {
         const total = words.length;
-        totalWordsElem.innerText = `${total} ${total === 1 ? 'Word' : 'Words'}`;
+        totalWordsElem.innerText = `${total}`;
       }
     }
 
@@ -554,7 +556,6 @@
     // Revising Mode State
     let revisingQueue = [];
     let revisingCurrentCard = null;
-    let isCardFlipped = false;
     let autoAudioEnabled = true;
 
     // Conjugation Game State
@@ -626,12 +627,12 @@
       const rowsHtml = STANDARD_PRONOUNS.map((p, idx) => {
         const existingVal = storedConjugations[p.pronoun] || autoMap[p.pronoun] || '';
         return `
-          <div class="flex justify-between items-center bg-white border-2 border-slate-800 px-3.5 py-2 rounded-xl shadow-xs gap-3">
-            <div class="flex items-center gap-2 w-28 shrink-0">
+          <div class="flex justify-between items-center bg-white border-2 border-slate-800 px-3 py-2 rounded-xl shadow-xs gap-2">
+            <div class="flex items-center gap-1.5 w-24 sm:w-28 shrink-0">
               <button onclick="speakGerman('${p.pronoun} ${existingVal.replace(/'/g, "\\'")}')" class="cartoon-btn bg-amber-200 hover:bg-amber-300 px-2 py-0.5 rounded-lg text-xs" title="Read Pronoun & Verb">🔊</button>
-              <span class="font-bold text-slate-700 text-sm truncate">${p.pronoun}</span>
+              <span class="font-bold text-slate-700 text-xs sm:text-sm truncate">${p.pronoun}</span>
             </div>
-            <input type="text" id="conjInput_${idx}" data-pronoun="${p.pronoun}" value="${existingVal.replace(/"/g, '&quot;')}" placeholder="enter conjugation..." class="cartoon-input flex-1 px-3 py-1 rounded-xl text-sm font-bold bg-amber-50/50">
+            <input type="text" id="conjInput_${idx}" data-pronoun="${p.pronoun}" value="${existingVal.replace(/"/g, '&quot;')}" placeholder="enter conjugation..." class="cartoon-input flex-1 px-3 py-1 rounded-xl text-xs sm:text-sm font-bold bg-amber-50/50">
           </div>
         `;
       }).join('');
@@ -947,35 +948,35 @@
             
             <div class="flex justify-between items-start gap-2">
               <div class="flex-1 cursor-pointer" onclick="playSound('click'); selectWorkspace('${ws.id}')">
-                <h3 class="font-bold text-lg sm:text-xl text-slate-900 leading-snug">
+                <h3 class="font-bold text-base sm:text-xl text-slate-900 leading-snug">
                   📁 ${ws.name}
                 </h3>
                 <div class="flex items-center gap-2 mt-1 flex-wrap">
-                  <span class="inline-block bg-white border-2 border-slate-800 text-slate-800 font-bold text-xs px-2.5 py-0.5 rounded-full">
+                  <span class="inline-block bg-white border-2 border-slate-800 text-slate-800 font-bold text-[11px] sm:text-xs px-2.5 py-0.5 rounded-full">
                     ${wsDeckCount} ${wsDeckCount === 1 ? 'deck' : 'decks'}
                   </span>
-                  <span class="inline-block bg-white border-2 border-slate-800 text-slate-800 font-bold text-xs px-2.5 py-0.5 rounded-full">
+                  <span class="inline-block bg-white border-2 border-slate-800 text-slate-800 font-bold text-[11px] sm:text-xs px-2.5 py-0.5 rounded-full">
                     ${totalWords} ${totalWords === 1 ? 'word' : 'words'}
                   </span>
                 </div>
               </div>
 
-              <div class="flex items-center gap-2 shrink-0">
-                <button onclick="playSound('click'); selectWorkspace('${ws.id}')" class="cartoon-btn bg-white hover:bg-slate-100 text-slate-800 text-xs sm:text-sm px-3 rounded-xl">
+              <div class="flex items-center gap-1.5 shrink-0">
+                <button onclick="playSound('click'); selectWorkspace('${ws.id}')" class="cartoon-btn bg-white hover:bg-slate-100 text-slate-800 text-xs px-2.5 rounded-xl">
                   Open ➔
                 </button>
-                <button onclick="deleteWorkspace('${ws.id}', event)" class="cartoon-btn bg-rose-400 hover:bg-rose-500 text-white px-2.5 rounded-xl text-xs sm:text-sm" title="Delete Workspace">
+                <button onclick="deleteWorkspace('${ws.id}', event)" class="cartoon-btn bg-rose-400 hover:bg-rose-500 text-white px-2 rounded-xl text-xs" title="Delete Workspace">
                   🗑️
                 </button>
               </div>
             </div>
 
             <div class="bg-white/80 border-2 border-slate-800 rounded-xl p-2 shadow-inner">
-              <div class="flex justify-between items-center text-[11px] font-extrabold text-slate-700 mb-1">
+              <div class="flex justify-between items-center text-[10px] sm:text-[11px] font-extrabold text-slate-700 mb-1">
                 <span>Workspace Mastery</span>
                 <span>${progressPercent}%</span>
               </div>
-              <div class="w-full bg-slate-200 border-2 border-slate-800 h-3 rounded-full overflow-hidden p-0.5">
+              <div class="w-full bg-slate-200 border-2 border-slate-800 h-2.5 sm:h-3 rounded-full overflow-hidden p-0.5">
                 <div class="bg-emerald-400 h-full rounded-full transition-all duration-300" style="width: ${progressPercent}%"></div>
               </div>
             </div>
@@ -985,21 +986,21 @@
       }).join('');
 
       container.innerHTML = `
-        <div class="space-y-5 sm:space-y-6 animate-pop">
+        <div class="space-y-4 sm:space-y-6 animate-pop">
           <div>
-            <div class="flex justify-between items-center mb-3 sm:mb-4">
-              <h2 class="text-lg sm:text-xl font-bold text-slate-800 flex items-center gap-2">
-                <span>📂 Workspaces (e.g. A1, A2):</span>
+            <div class="flex justify-between items-center mb-3">
+              <h2 class="text-base sm:text-xl font-bold text-slate-800 flex items-center gap-2">
+                <span>📂 Workspaces:</span>
               </h2>
-              <span class="text-xs font-semibold text-slate-500">🖐️ Drag cards to reorder</span>
+              <span class="text-[11px] font-semibold text-slate-500">🖐️ Drag to reorder</span>
             </div>
             <div id="workspacesGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">${workspacesHtml}</div>
           </div>
 
-          <form onsubmit="addWorkspace(event)" class="pt-3 border-t-4 border-dashed border-slate-200 flex gap-2">
-            <input type="text" id="newWorkspaceInput" placeholder="📁 New Workspace (e.g. A1, B1)..." required class="cartoon-input flex-1 px-3 sm:px-4 rounded-xl text-sm font-semibold">
-            <button type="submit" class="cartoon-btn bg-indigo-500 hover:bg-indigo-600 text-white px-3 sm:px-4 rounded-xl text-xs sm:text-sm whitespace-nowrap">
-              + New Workspace
+          <form onsubmit="addWorkspace(event)" class="pt-3 border-t-4 border-dashed border-slate-200 flex flex-col sm:flex-row gap-2">
+            <input type="text" id="newWorkspaceInput" placeholder="📁 New Workspace (e.g. A1, B1)..." required class="cartoon-input flex-1 px-3 rounded-xl text-xs sm:text-sm font-semibold">
+            <button type="submit" class="cartoon-btn bg-indigo-500 hover:bg-indigo-600 text-white px-4 rounded-xl text-xs sm:text-sm whitespace-nowrap">
+              + Workspace
             </button>
           </form>
         </div>
@@ -1080,7 +1081,7 @@
       if (isEditingWorkspaceName) {
         headerTitleHtml = `
           <div class="flex items-center gap-2 w-full">
-            <input type="text" id="workspaceNameInput" value="${selectedWorkspace.name.replace(/"/g, '&quot;')}" class="cartoon-input flex-1 px-3 rounded-xl text-base font-bold">
+            <input type="text" id="workspaceNameInput" value="${selectedWorkspace.name.replace(/"/g, '&quot;')}" class="cartoon-input flex-1 px-3 rounded-xl text-sm sm:text-base font-bold">
             <button onclick="saveWorkspaceName()" class="cartoon-btn bg-emerald-400 hover:bg-emerald-500 text-slate-900 px-3 rounded-xl text-xs">Save</button>
             <button onclick="cancelWorkspaceNameEdit()" class="cartoon-btn bg-slate-200 hover:bg-slate-300 text-slate-800 px-2.5 rounded-xl text-xs">Cancel</button>
           </div>
@@ -1088,7 +1089,7 @@
       } else {
         headerTitleHtml = `
           <div class="flex items-center gap-2 flex-wrap">
-            <h2 class="text-xl sm:text-2xl font-black text-slate-900 leading-tight">📁 ${selectedWorkspace.name}</h2>
+            <h2 class="text-lg sm:text-2xl font-black text-slate-900 leading-tight">📁 ${selectedWorkspace.name}</h2>
             <button onclick="startWorkspaceNameEdit()" class="cartoon-btn bg-amber-200 hover:bg-amber-300 text-slate-800 px-2.5 rounded-xl text-xs" title="Edit Workspace Name">
               ✏️ Edit
             </button>
@@ -1124,30 +1125,30 @@
             
             <div class="flex justify-between items-start gap-2">
               <div class="flex-1 cursor-pointer" onclick="playSound('click'); selectCategory('${cat.id}')">
-                <h3 class="font-bold text-lg sm:text-xl text-slate-900 leading-snug">
+                <h3 class="font-bold text-base sm:text-xl text-slate-900 leading-snug">
                   ${isVerbsDeck ? '⚡ ' : ''}${cat.name}
                 </h3>
-                <span class="inline-block bg-white border-2 border-slate-800 text-slate-800 font-bold text-xs px-2.5 py-0.5 rounded-full mt-1">
-                  ${count} ${count === 1 ? 'word' : 'words'} ${isVerbsDeck ? '• 🧩 Auto-Conjugation' : ''}
+                <span class="inline-block bg-white border-2 border-slate-800 text-slate-800 font-bold text-[11px] sm:text-xs px-2.5 py-0.5 rounded-full mt-1">
+                  ${count} ${count === 1 ? 'word' : 'words'} ${isVerbsDeck ? '• 🧩 Conjugation' : ''}
                 </span>
               </div>
 
-              <div class="flex items-center gap-2 shrink-0">
-                <button onclick="playSound('click'); selectCategory('${cat.id}')" class="cartoon-btn bg-white hover:bg-slate-100 text-slate-800 text-xs sm:text-sm px-3 rounded-xl">
+              <div class="flex items-center gap-1.5 shrink-0">
+                <button onclick="playSound('click'); selectCategory('${cat.id}')" class="cartoon-btn bg-white hover:bg-slate-100 text-slate-800 text-xs px-2.5 rounded-xl">
                   Open ➔
                 </button>
-                <button onclick="deleteCategory('${cat.id}', event)" class="cartoon-btn bg-rose-400 hover:bg-rose-500 text-white px-2.5 rounded-xl text-xs sm:text-sm" title="Delete Deck">
+                <button onclick="deleteCategory('${cat.id}', event)" class="cartoon-btn bg-rose-400 hover:bg-rose-500 text-white px-2 rounded-xl text-xs" title="Delete Deck">
                   🗑️
                 </button>
               </div>
             </div>
 
             <div class="bg-white/80 border-2 border-slate-800 rounded-xl p-2 shadow-inner">
-              <div class="flex justify-between items-center text-[11px] font-extrabold text-slate-700 mb-1">
+              <div class="flex justify-between items-center text-[10px] sm:text-[11px] font-extrabold text-slate-700 mb-1">
                 <span>Deck Progress</span>
                 <span>${progressPercent}%</span>
               </div>
-              <div class="w-full bg-slate-200 border-2 border-slate-800 h-3 rounded-full overflow-hidden p-0.5">
+              <div class="w-full bg-slate-200 border-2 border-slate-800 h-2.5 sm:h-3 rounded-full overflow-hidden p-0.5">
                 <div class="bg-emerald-400 h-full rounded-full transition-all duration-300" style="width: ${progressPercent}%"></div>
               </div>
             </div>
@@ -1157,12 +1158,12 @@
       }).join('');
 
       container.innerHTML = `
-        <div class="space-y-5 sm:space-y-6 animate-pop">
+        <div class="space-y-4 sm:space-y-6 animate-pop">
           <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 pb-3 border-b-4 border-slate-800">
             <div class="w-full sm:w-auto">
               ${headerTitleHtml}
               <p class="text-xs sm:text-sm font-semibold text-slate-500 mt-1">
-                Decks stored inside this workspace. Switch workspaces anytime from Home!
+                Decks stored inside this workspace.
               </p>
             </div>
             <button onclick="renderHomeView()" class="cartoon-btn bg-indigo-100 hover:bg-indigo-200 text-slate-800 font-bold px-3 rounded-xl text-xs">
@@ -1171,17 +1172,17 @@
           </div>
 
           <div>
-            <div class="flex justify-between items-center mb-3 sm:mb-4">
-              <h3 class="text-lg font-bold text-slate-800">Decks in ${selectedWorkspace.name}:</h3>
-              <span class="text-xs font-semibold text-slate-500">🖐️ Drag cards to reorder</span>
+            <div class="flex justify-between items-center mb-3">
+              <h3 class="text-sm sm:text-lg font-bold text-slate-800">Decks in ${selectedWorkspace.name}:</h3>
+              <span class="text-[11px] font-semibold text-slate-500">🖐️ Drag to reorder</span>
             </div>
             <div id="decksGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">${decksHtml}</div>
           </div>
 
-          <form onsubmit="addCategory(event)" class="pt-3 border-t-4 border-dashed border-slate-200 flex gap-2">
-            <input type="text" id="newCategoryInput" placeholder="📁 New Deck in ${selectedWorkspace.name}..." required class="cartoon-input flex-1 px-3 sm:px-4 rounded-xl text-sm font-semibold">
-            <button type="submit" class="cartoon-btn bg-indigo-500 hover:bg-indigo-600 text-white px-3 sm:px-4 rounded-xl text-xs sm:text-sm whitespace-nowrap">
-              + New Deck
+          <form onsubmit="addCategory(event)" class="pt-3 border-t-4 border-dashed border-slate-200 flex flex-col sm:flex-row gap-2">
+            <input type="text" id="newCategoryInput" placeholder="📁 New Deck in ${selectedWorkspace.name}..." required class="cartoon-input flex-1 px-3 rounded-xl text-xs sm:text-sm font-semibold">
+            <button type="submit" class="cartoon-btn bg-indigo-500 hover:bg-indigo-600 text-white px-4 rounded-xl text-xs sm:text-sm whitespace-nowrap">
+              + Deck
             </button>
           </form>
         </div>
@@ -1285,7 +1286,7 @@
     function buildWordListHtml(categoryWords) {
       if (categoryWords.length === 0) {
         return `
-          <div class="text-center p-6 text-slate-400 font-bold italic text-sm">
+          <div class="text-center p-6 text-slate-400 font-bold italic text-xs sm:text-sm">
             🎈 No words match your search or filter right now!
           </div>`;
       }
@@ -1296,10 +1297,10 @@
           return `
             <div class="p-3 bg-indigo-100/70 border-b-2 border-slate-800 flex flex-col gap-2">
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                <input type="text" id="editGerman_${w.id}" value="${w.german.replace(/"/g, '&quot;')}" class="cartoon-input px-3 rounded-xl text-sm font-bold" placeholder="German verb">
-                <input type="text" id="editEnglish_${w.id}" value="${w.english.replace(/"/g, '&quot;')}" class="cartoon-input px-3 rounded-xl text-sm font-bold" placeholder="English meaning">
+                <input type="text" id="editGerman_${w.id}" value="${w.german.replace(/"/g, '&quot;')}" class="cartoon-input px-3 rounded-xl text-xs sm:text-sm font-bold" placeholder="German verb">
+                <input type="text" id="editEnglish_${w.id}" value="${w.english.replace(/"/g, '&quot;')}" class="cartoon-input px-3 rounded-xl text-xs sm:text-sm font-bold" placeholder="English meaning">
               </div>
-              <input type="text" id="editExample_${w.id}" value="${(w.example || '').replace(/"/g, '&quot;')}" class="cartoon-input px-3 rounded-xl text-sm font-semibold" placeholder="Example sentence">
+              <input type="text" id="editExample_${w.id}" value="${(w.example || '').replace(/"/g, '&quot;')}" class="cartoon-input px-3 rounded-xl text-xs sm:text-sm font-semibold" placeholder="Example sentence">
               <div class="flex gap-2 justify-end mt-1">
                 <button onclick="saveEdit('${w.id}')" class="cartoon-btn bg-emerald-400 hover:bg-emerald-500 text-slate-900 px-3 rounded-xl text-xs">Save</button>
                 <button onclick="cancelEdit()" class="cartoon-btn bg-slate-200 hover:bg-slate-300 text-slate-800 px-3 rounded-xl text-xs">Cancel</button>
@@ -1312,36 +1313,36 @@
         const showTableBtn = isVerbsDeck && isVerbWord(w, selectedCategory);
 
         return `
-          <div class="p-3 sm:p-3.5 flex items-center justify-between hover:bg-amber-50/50 border-b-2 border-slate-100 last:border-0 transition-colors">
-            <div class="flex items-center gap-2 pr-2">
-              <button onclick="toggleStar('${w.id}', event)" class="text-lg hover:scale-110 transition-transform" title="Bookmark Card">
+          <div class="p-3 sm:p-3.5 flex items-center justify-between hover:bg-amber-50/50 border-b-2 border-slate-100 last:border-0 transition-colors gap-2">
+            <div class="flex items-center gap-2 pr-1 overflow-hidden">
+              <button onclick="toggleStar('${w.id}', event)" class="text-base sm:text-lg hover:scale-110 transition-transform shrink-0" title="Bookmark Card">
                 ${w.starred ? '⭐' : '☆'}
               </button>
               <button onclick="speakGerman('${w.german.replace(/'/g, "\\'")}')" class="cartoon-btn bg-amber-300 hover:bg-amber-400 px-2 rounded-xl text-xs shrink-0" title="Listen">
                 🔊
               </button>
-              <div>
+              <div class="overflow-hidden">
                 <div class="flex items-center gap-1.5 flex-wrap">
-                  <span class="font-bold text-slate-800 text-sm sm:text-base">${w.german}</span>
-                  <span class="text-slate-500 font-semibold text-xs sm:text-sm">(${w.english})</span>
+                  <span class="font-bold text-slate-800 text-xs sm:text-base truncate">${w.german}</span>
+                  <span class="text-slate-500 font-semibold text-[11px] sm:text-sm truncate">(${w.english})</span>
                 </div>
-                <div class="flex items-center gap-2 mt-0.5 text-xs font-bold text-slate-500">
+                <div class="flex items-center gap-2 mt-0.5 text-[10px] sm:text-xs font-bold text-slate-500">
                   <span class="bg-purple-100 text-purple-800 px-1.5 rounded border border-purple-300">Box ${w.box || 1}</span>
-                  <span>Accuracy: ${w.attempts > 0 ? `${accuracy}%` : 'New'}</span>
+                  <span>Acc: ${w.attempts > 0 ? `${accuracy}%` : 'New'}</span>
                 </div>
-                ${w.example ? `<p class="text-xs text-indigo-600 font-semibold italic mt-0.5">💬 "${w.example}"</p>` : ''}
+                ${w.example ? `<p class="text-[11px] text-indigo-600 font-semibold italic mt-0.5 truncate">💬 "${w.example}"</p>` : ''}
               </div>
             </div>
-            <div class="flex items-center gap-1.5 shrink-0">
+            <div class="flex items-center gap-1 shrink-0">
               ${showTableBtn ? `
-                <button onclick="openConjugationModal('${w.id}')" class="cartoon-btn bg-teal-200 hover:bg-teal-300 text-slate-900 px-2.5 rounded-xl text-xs" title="View/Customize Conjugations">
+                <button onclick="openConjugationModal('${w.id}')" class="cartoon-btn bg-teal-200 hover:bg-teal-300 text-slate-900 px-2 rounded-xl text-[11px] sm:text-xs" title="Table">
                   📊 Table
                 </button>
               ` : ''}
-              <button onclick="playSound('click'); startEdit('${w.id}')" class="cartoon-btn bg-sky-200 hover:bg-sky-300 text-slate-800 px-2 rounded-xl text-xs" title="Edit Card">
+              <button onclick="playSound('click'); startEdit('${w.id}')" class="cartoon-btn bg-sky-200 hover:bg-sky-300 text-slate-800 px-2 rounded-xl text-[11px] sm:text-xs" title="Edit">
                 ✏️
               </button>
-              <button onclick="deleteWord('${w.id}')" class="cartoon-btn bg-rose-200 hover:bg-rose-300 text-slate-800 px-2 rounded-xl text-xs" title="Delete Card">
+              <button onclick="deleteWord('${w.id}')" class="cartoon-btn bg-rose-200 hover:bg-rose-300 text-slate-800 px-2 rounded-xl text-[11px] sm:text-xs" title="Delete">
                 ❌
               </button>
             </div>
@@ -1356,13 +1357,12 @@
       isWaitingForNext = false;
       const categoryWords = getSelectedCategoryWords();
       const totalCatWordsCount = words.filter(w => w.categoryId === selectedCategory.id).length;
-      const isVerbsDeck = selectedCategory.type === 'verbs' || selectedCategory.name.toLowerCase().includes('verb');
 
       let headerTitleHtml = '';
       if (isEditingCategoryName && !selectedCategory.isSpecial) {
         headerTitleHtml = `
           <div class="flex items-center gap-2 w-full">
-            <input type="text" id="categoryNameInput" value="${selectedCategory.name.replace(/"/g, '&quot;')}" class="cartoon-input flex-1 px-3 rounded-xl text-base font-bold">
+            <input type="text" id="categoryNameInput" value="${selectedCategory.name.replace(/"/g, '&quot;')}" class="cartoon-input flex-1 px-3 rounded-xl text-sm sm:text-base font-bold">
             <button onclick="saveCategoryName()" class="cartoon-btn bg-emerald-400 hover:bg-emerald-500 text-slate-900 px-3 rounded-xl text-xs">Save</button>
             <button onclick="cancelCategoryNameEdit()" class="cartoon-btn bg-slate-200 hover:bg-slate-300 text-slate-800 px-2.5 rounded-xl text-xs">Cancel</button>
           </div>
@@ -1370,9 +1370,9 @@
       } else {
         headerTitleHtml = `
           <div class="flex items-center gap-2 flex-wrap">
-            <h2 class="text-xl sm:text-2xl font-black text-slate-900 leading-tight">${selectedCategory.name}</h2>
+            <h2 class="text-lg sm:text-2xl font-black text-slate-900 leading-tight">${selectedCategory.name}</h2>
             ${!selectedCategory.isSpecial ? `
-              <button onclick="startCategoryNameEdit()" class="cartoon-btn bg-amber-200 hover:bg-amber-300 text-slate-800 px-2.5 rounded-xl text-xs" title="Edit Deck Name">
+              <button onclick="startCategoryNameEdit()" class="cartoon-btn bg-amber-200 hover:bg-amber-300 text-slate-800 px-2 rounded-xl text-xs" title="Edit Deck Name">
                 ✏️ Edit
               </button>
             ` : ''}
@@ -1386,32 +1386,32 @@
             <div class="w-full sm:w-auto">
               ${headerTitleHtml}
               <p class="text-xs sm:text-sm font-semibold text-slate-500 mt-1">
-                ${totalCatWordsCount} cards total • Workspace: <span class="text-indigo-600 font-bold">${selectedWorkspace ? selectedWorkspace.name : 'General'}</span>
+                ${totalCatWordsCount} cards • Workspace: <span class="text-indigo-600 font-bold">${selectedWorkspace ? selectedWorkspace.name : 'General'}</span>
               </p>
             </div>
-            <div class="flex gap-2 w-full sm:w-auto">
-              <button onclick="renderWorkspaceView()" class="cartoon-btn bg-indigo-100 hover:bg-indigo-200 text-slate-800 font-bold px-3 rounded-xl text-xs">
+            <div class="grid grid-cols-3 gap-1.5 w-full sm:flex sm:w-auto">
+              <button onclick="renderWorkspaceView()" class="cartoon-btn bg-indigo-100 hover:bg-indigo-200 text-slate-800 font-bold px-2.5 rounded-xl text-[11px] sm:text-xs">
                 📁 Workspace
               </button>
-              <button onclick="openImportModal()" class="cartoon-btn bg-sky-300 hover:bg-sky-400 text-slate-900 font-bold px-3 rounded-xl text-xs sm:text-sm flex items-center justify-center gap-1">
+              <button onclick="openImportModal()" class="cartoon-btn bg-sky-300 hover:bg-sky-400 text-slate-900 font-bold px-2.5 rounded-xl text-[11px] sm:text-xs">
                 📥 Import
               </button>
-              <button onclick="playSound('click'); openModeSelection()" ${totalCatWordsCount === 0 ? 'disabled' : ''} class="cartoon-btn bg-emerald-400 hover:bg-emerald-500 disabled:opacity-50 text-slate-900 font-bold px-4 rounded-xl text-sm sm:text-base flex items-center justify-center gap-2">
+              <button onclick="playSound('click'); openModeSelection()" ${totalCatWordsCount === 0 ? 'disabled' : ''} class="cartoon-btn bg-emerald-400 hover:bg-emerald-500 disabled:opacity-50 text-slate-900 font-bold px-3 rounded-xl text-xs sm:text-sm flex items-center justify-center gap-1 col-span-3 sm:col-span-1">
                 🎮 Play Games!
               </button>
             </div>
           </div>
 
           <form onsubmit="addWord(event)" class="cartoon-card bg-indigo-50 p-3 sm:p-4 border-2">
-            <h3 class="text-xs sm:text-sm font-bold text-indigo-950 mb-1">➕ Add A New Verb / Word Card</h3>
-            <p class="text-[11px] text-indigo-800 mb-2 font-semibold">Tip: Enter infinitive German verbs (e.g., <code class="bg-white px-1 rounded border">lernen</code>) for automatic conjugation.</p>
+            <h3 class="text-xs sm:text-sm font-bold text-indigo-950 mb-1">➕ Add New Word/Verb Card</h3>
+            <p class="text-[10px] sm:text-[11px] text-indigo-800 mb-2 font-semibold">Tip: Enter infinitives (e.g., <code class="bg-white px-1 rounded border">lernen</code>) for auto conjugation.</p>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-2">
-              <input type="text" id="germanInput" placeholder="German (e.g. lernen)" required class="cartoon-input px-3 rounded-xl text-sm font-semibold">
-              <input type="text" id="englishInput" placeholder="English (e.g. to learn)" required class="cartoon-input px-3 rounded-xl text-sm font-semibold">
+              <input type="text" id="germanInput" placeholder="German (e.g. lernen)" required class="cartoon-input px-3 rounded-xl text-xs sm:text-sm font-semibold">
+              <input type="text" id="englishInput" placeholder="English (e.g. to learn)" required class="cartoon-input px-3 rounded-xl text-xs sm:text-sm font-semibold">
             </div>
             <div class="flex flex-col sm:flex-row gap-2">
-              <input type="text" id="exampleInput" placeholder="Example sentence (optional)" class="cartoon-input flex-1 px-3 rounded-xl text-sm font-semibold">
-              <button type="submit" class="cartoon-btn bg-indigo-500 hover:bg-indigo-600 text-white px-4 rounded-xl text-sm font-bold">Add Card!</button>
+              <input type="text" id="exampleInput" placeholder="Example sentence (optional)" class="cartoon-input flex-1 px-3 rounded-xl text-xs sm:text-sm font-semibold">
+              <button type="submit" class="cartoon-btn bg-indigo-500 hover:bg-indigo-600 text-white px-4 rounded-xl text-xs sm:text-sm font-bold">Add!</button>
             </div>
           </form>
 
@@ -1419,7 +1419,7 @@
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 mb-2">
               <h3 class="text-xs sm:text-sm font-bold text-slate-700">📜 Deck Contents</h3>
               <div class="w-full sm:w-64">
-                <input type="text" id="deckSearchInput" oninput="handleDeckSearchInput(event)" value="${deckSearchQuery}" placeholder="🔍 Search English or German..." class="cartoon-input w-full px-3 py-1 rounded-xl text-xs font-semibold bg-white">
+                <input type="text" id="deckSearchInput" oninput="handleDeckSearchInput(event)" value="${deckSearchQuery}" placeholder="🔍 Search deck..." class="cartoon-input w-full px-3 py-1 rounded-xl text-xs font-semibold bg-white">
               </div>
             </div>
             <div id="wordListContainer" class="cartoon-card bg-white overflow-hidden">${buildWordListHtml(categoryWords)}</div>
@@ -1513,68 +1513,68 @@
       const hasVerbs = catWords.some(w => isVerbWord(w, selectedCategory));
 
       container.innerHTML = `
-        <div class="max-w-md mx-auto text-center space-y-4 animate-pop py-2">
-          <h2 class="text-2xl sm:text-3xl font-black text-slate-900">Choose Game Mode 🎮</h2>
+        <div class="max-w-md mx-auto text-center space-y-3 sm:space-y-4 animate-pop py-2">
+          <h2 class="text-xl sm:text-3xl font-black text-slate-900">Choose Game Mode 🎮</h2>
           
-          <div class="grid grid-cols-1 gap-2.5 text-left">
-            <button onclick="startRevisingMode()" class="cartoon-card bg-orange-200 hover:bg-orange-300 p-3 sm:p-3.5 text-slate-900">
+          <div class="grid grid-cols-1 gap-2 text-left">
+            <button onclick="startRevisingMode()" class="cartoon-card bg-orange-200 hover:bg-orange-300 p-3 text-slate-900">
               <div class="flex items-center gap-3">
-                <span class="text-3xl">🗂️</span>
+                <span class="text-2xl sm:text-3xl">🗂️</span>
                 <div>
-                  <h3 class="font-black text-base sm:text-lg leading-snug">Revising Mode</h3>
-                  <p class="text-xs text-slate-700 font-semibold">Always show translation. Review or memorize cards seamlessly!</p>
+                  <h3 class="font-black text-sm sm:text-lg leading-snug">Revising Mode</h3>
+                  <p class="text-[11px] sm:text-xs text-slate-700 font-semibold">Review or memorize cards seamlessly with swipe support!</p>
                 </div>
               </div>
             </button>
 
             ${isVerbsDeck ? `
-            <button onclick="startConjugationGameSetup()" ${!hasVerbs ? 'disabled' : ''} class="cartoon-card bg-teal-200 hover:bg-teal-300 disabled:opacity-50 p-3 sm:p-3.5 text-slate-900">
+            <button onclick="startConjugationGameSetup()" ${!hasVerbs ? 'disabled' : ''} class="cartoon-card bg-teal-200 hover:bg-teal-300 disabled:opacity-50 p-3 text-slate-900">
               <div class="flex items-center gap-3">
-                <span class="text-3xl">🧩</span>
+                <span class="text-2xl sm:text-3xl">🧩</span>
                 <div>
-                  <h3 class="font-black text-base sm:text-lg leading-snug">Conjugation</h3>
-                  <p class="text-xs text-slate-700 font-semibold">Auto-conjugate verbs across all pronouns! ${!hasVerbs ? '(Requires verbs)' : ''}</p>
+                  <h3 class="font-black text-sm sm:text-lg leading-snug">Conjugation</h3>
+                  <p class="text-[11px] sm:text-xs text-slate-700 font-semibold">Auto-conjugate verbs across pronouns! ${!hasVerbs ? '(Requires verbs)' : ''}</p>
                 </div>
               </div>
             </button>
             ` : ''}
 
-            <button onclick="startMode('mc')" class="cartoon-card bg-amber-200 hover:bg-amber-300 p-3 sm:p-3.5 text-slate-900">
+            <button onclick="startMode('mc')" class="cartoon-card bg-amber-200 hover:bg-amber-300 p-3 text-slate-900">
               <div class="flex items-center gap-3">
-                <span class="text-3xl">⚡</span>
+                <span class="text-2xl sm:text-3xl">⚡</span>
                 <div>
-                  <h3 class="font-black text-base sm:text-lg leading-snug">Multiple Choice</h3>
-                  <p class="text-xs text-slate-700 font-semibold">Speed round! Choose 1 of 4 options before timer runs out.</p>
+                  <h3 class="font-black text-sm sm:text-lg leading-snug">Multiple Choice</h3>
+                  <p class="text-[11px] sm:text-xs text-slate-700 font-semibold">Speed round! Choose 1 of 4 options before timer runs out.</p>
                 </div>
               </div>
             </button>
 
-            <button onclick="startMode('audio')" class="cartoon-card bg-sky-200 hover:bg-sky-300 p-3 sm:p-3.5 text-slate-900">
+            <button onclick="startMode('audio')" class="cartoon-card bg-sky-200 hover:bg-sky-300 p-3 text-slate-900">
               <div class="flex items-center gap-3">
-                <span class="text-3xl">🎧</span>
+                <span class="text-2xl sm:text-3xl">🎧</span>
                 <div>
-                  <h3 class="font-black text-base sm:text-lg leading-snug">Audio Challenge</h3>
-                  <p class="text-xs text-slate-700 font-semibold">Listen to German speech and type what you hear!</p>
+                  <h3 class="font-black text-sm sm:text-lg leading-snug">Audio Challenge</h3>
+                  <p class="text-[11px] sm:text-xs text-slate-700 font-semibold">Listen to German speech and type what you hear!</p>
                 </div>
               </div>
             </button>
 
-            <button onclick="startMode('fill')" ${!hasExamples ? 'disabled' : ''} class="cartoon-card bg-rose-200 hover:bg-rose-300 disabled:opacity-50 p-3 sm:p-3.5 text-slate-900">
+            <button onclick="startMode('fill')" ${!hasExamples ? 'disabled' : ''} class="cartoon-card bg-rose-200 hover:bg-rose-300 disabled:opacity-50 p-3 text-slate-900">
               <div class="flex items-center gap-3">
-                <span class="text-3xl">📝</span>
+                <span class="text-2xl sm:text-3xl">📝</span>
                 <div>
-                  <h3 class="font-black text-base sm:text-lg leading-snug">Fill in the Blank</h3>
-                  <p class="text-xs text-slate-700 font-semibold">Complete sentence contexts! ${!hasExamples ? '(Requires sentences)' : ''}</p>
+                  <h3 class="font-black text-sm sm:text-lg leading-snug">Fill in the Blank</h3>
+                  <p class="text-[11px] sm:text-xs text-slate-700 font-semibold">Complete sentences! ${!hasExamples ? '(Requires sentences)' : ''}</p>
                 </div>
               </div>
             </button>
 
-            <button onclick="showFlashcardSetup()" class="cartoon-card bg-purple-200 hover:bg-purple-300 p-3 sm:p-3.5 text-slate-900">
+            <button onclick="showFlashcardSetup()" class="cartoon-card bg-purple-200 hover:bg-purple-300 p-3 text-slate-900">
               <div class="flex items-center gap-3">
-                <span class="text-3xl">🃏</span>
+                <span class="text-2xl sm:text-3xl">🃏</span>
                 <div>
-                  <h3 class="font-black text-base sm:text-lg leading-snug">Classic Flashcards</h3>
-                  <p class="text-xs text-slate-700 font-semibold">Mastery, Endless, or Normal typing practice.</p>
+                  <h3 class="font-black text-sm sm:text-lg leading-snug">Classic Flashcards</h3>
+                  <p class="text-[11px] sm:text-xs text-slate-700 font-semibold">Mastery, Endless, or Normal typing practice.</p>
                 </div>
               </div>
             </button>
@@ -1605,7 +1605,7 @@
       autoAudioEnabled = !autoAudioEnabled;
       const toggleBtn = document.getElementById('autoAudioToggleBtn');
       if (toggleBtn) {
-        toggleBtn.innerText = autoAudioEnabled ? '🔊 Auto Audio: ON' : '🔇 Auto Audio: OFF';
+        toggleBtn.innerText = autoAudioEnabled ? '🔊 Audio: ON' : '🔇 Audio: OFF';
         toggleBtn.className = autoAudioEnabled 
           ? 'cartoon-btn bg-emerald-300 hover:bg-emerald-400 text-slate-900 px-2.5 py-1 rounded-xl text-xs font-bold'
           : 'cartoon-btn bg-slate-300 hover:bg-slate-400 text-slate-800 px-2.5 py-1 rounded-xl text-xs font-bold';
@@ -1634,63 +1634,63 @@
 
       container.innerHTML = `
         <div class="animate-pop">
-          <div class="flex justify-between items-center mb-3 sm:mb-4 pb-2 border-b-2 border-slate-200">
-            <span class="text-xs font-bold uppercase tracking-wider text-orange-900 bg-orange-100 px-2.5 py-1 rounded-full border border-orange-300">
+          <div class="flex justify-between items-center mb-3 pb-2 border-b-2 border-slate-200">
+            <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-orange-900 bg-orange-100 px-2 py-0.5 rounded-full border border-orange-300">
               🗂️ Revising Mode
             </span>
-            <div class="flex items-center gap-2">
-              <button id="autoAudioToggleBtn" onclick="toggleAutoAudio()" class="cartoon-btn ${autoAudioEnabled ? 'bg-emerald-300 hover:bg-emerald-400' : 'bg-slate-300 hover:bg-slate-400'} text-slate-900 px-2.5 py-1 rounded-xl text-xs font-bold" title="Toggle Auto Audio on New Card">
-                ${autoAudioEnabled ? '🔊 Auto Audio: ON' : '🔇 Auto Audio: OFF'}
+            <div class="flex items-center gap-1.5">
+              <button id="autoAudioToggleBtn" onclick="toggleAutoAudio()" class="cartoon-btn ${autoAudioEnabled ? 'bg-emerald-300 hover:bg-emerald-400' : 'bg-slate-300 hover:bg-slate-400'} text-slate-900 px-2 py-1 rounded-xl text-[11px] font-bold">
+                ${autoAudioEnabled ? '🔊 Audio: ON' : '🔇 Audio: OFF'}
               </button>
-              <button onclick="playSound('click'); renderCategoryView()" class="cartoon-btn bg-rose-200 hover:bg-rose-300 text-slate-800 text-xs px-2.5 rounded-xl shrink-0">
+              <button onclick="playSound('click'); renderCategoryView()" class="cartoon-btn bg-rose-200 hover:bg-rose-300 text-slate-800 text-xs px-2 rounded-xl shrink-0">
                 ✕ Quit
               </button>
             </div>
           </div>
 
-          <div class="max-w-md mx-auto py-1 sm:py-2">
-            <div class="flex justify-between text-xs font-bold text-slate-600 mb-1">
-              <span>Cards left in queue: ${revisingQueue.length + 1}</span>
+          <div class="max-w-md mx-auto py-1">
+            <div class="flex justify-between text-[11px] sm:text-xs font-bold text-slate-600 mb-1">
+              <span>Queue: ${revisingQueue.length + 1} left</span>
               <span>Memorized: ${Math.max(0, memorizedCount)}/${totalInitialCount} 🎓</span>
             </div>
             
-            <div class="w-full bg-slate-200 border-2 border-slate-800 h-3.5 rounded-full overflow-hidden p-0.5 mb-4">
+            <div class="w-full bg-slate-200 border-2 border-slate-800 h-3 sm:h-3.5 rounded-full overflow-hidden p-0.5 mb-3">
               <div class="bg-orange-400 h-full rounded-full transition-all duration-300" style="width: ${(Math.max(0, memorizedCount) / totalInitialCount) * 100}%"></div>
             </div>
 
             <div id="swipeCardElement" 
                  onmousedown="startCardDrag(event)" 
                  ontouchstart="startCardDrag(event)"
-                 class="swipe-card cartoon-card bg-amber-50 p-6 text-center mb-4 select-none relative min-h-[220px] flex flex-col justify-between">
+                 class="swipe-card cartoon-card bg-amber-50 p-4 sm:p-6 text-center mb-3 select-none relative min-h-[200px] sm:min-h-[220px] flex flex-col justify-between">
               
               <div>
                 <div class="flex justify-end items-center mb-2">
-                  <button onclick="event.stopPropagation(); speakGerman('${card.german.replace(/'/g, "\\'")}')" class="cartoon-btn bg-white px-2.5 rounded-full text-base shrink-0" title="Listen">
+                  <button onclick="event.stopPropagation(); speakGerman('${card.german.replace(/'/g, "\\'")}')" class="cartoon-btn bg-white px-2 rounded-full text-sm sm:text-base shrink-0" title="Listen">
                     🔊
                   </button>
                 </div>
 
-                <div class="py-2">
-                  <h3 class="text-3xl sm:text-4xl font-black text-slate-900 mb-2">${card.german}</h3>
-                  ${card.example ? `<p class="text-xs sm:text-sm text-indigo-700 font-semibold italic mt-1">💬 "${card.example}"</p>` : ''}
+                <div class="py-1 sm:py-2">
+                  <h3 class="text-2xl sm:text-4xl font-black text-slate-900 mb-2">${card.german}</h3>
+                  ${card.example ? `<p class="text-[11px] sm:text-sm text-indigo-700 font-semibold italic mt-1">💬 "${card.example}"</p>` : ''}
 
-                  <div class="mt-4 pt-4 border-t-2 border-slate-800/20">
-                    <span class="text-xs font-black uppercase text-slate-400 block mb-0.5">Translation</span>
-                    <h4 class="text-xl sm:text-2xl font-black text-emerald-700">${card.english}</h4>
+                  <div class="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t-2 border-slate-800/20">
+                    <span class="text-[10px] sm:text-xs font-black uppercase text-slate-400 block mb-0.5">Translation</span>
+                    <h4 class="text-lg sm:text-2xl font-black text-emerald-700">${card.english}</h4>
                   </div>
                 </div>
               </div>
 
-              <div class="text-[11px] font-bold text-slate-400 italic mt-2">
-                👈 Swipe Left (Review Later) | Swipe Right (Memorized) 👉
+              <div class="text-[10px] sm:text-[11px] font-bold text-slate-400 italic mt-2">
+                👈 Swipe Left (Review) | Swipe Right (Memorized) 👉
               </div>
             </div>
 
-            <div class="grid grid-cols-2 gap-3">
-              <button onclick="handleRevisingSwipe('left')" class="cartoon-btn bg-rose-300 hover:bg-rose-400 text-slate-900 font-black py-3 rounded-2xl text-sm sm:text-base flex items-center justify-center gap-2">
-                👈 Not Memorized
+            <div class="grid grid-cols-2 gap-2 sm:gap-3">
+              <button onclick="handleRevisingSwipe('left')" class="cartoon-btn bg-rose-300 hover:bg-rose-400 text-slate-900 font-black py-2.5 sm:py-3 rounded-2xl text-xs sm:text-base flex items-center justify-center gap-1">
+                👈 Review Later
               </button>
-              <button onclick="handleRevisingSwipe('right')" class="cartoon-btn bg-emerald-300 hover:bg-emerald-400 text-slate-900 font-black py-3 rounded-2xl text-sm sm:text-base flex items-center justify-center gap-2">
+              <button onclick="handleRevisingSwipe('right')" class="cartoon-btn bg-emerald-300 hover:bg-emerald-400 text-slate-900 font-black py-2.5 sm:py-3 rounded-2xl text-xs sm:text-base flex items-center justify-center gap-1">
                 Memorized 👉
               </button>
             </div>
@@ -1783,15 +1783,15 @@
 
       container.innerHTML = `
         <div class="text-center py-4 sm:py-6 max-w-sm mx-auto animate-pop">
-          <div class="inline-block p-3.5 cartoon-card bg-orange-300 text-3xl sm:text-4xl mb-3">
+          <div class="inline-block p-3 cartoon-card bg-orange-300 text-3xl sm:text-4xl mb-3">
             🏆
           </div>
-          <h3 class="text-2xl sm:text-3xl font-black text-slate-900">Revising Completed!</h3>
-          <p class="text-slate-600 font-bold text-sm sm:text-base mt-1 mb-4">
+          <h3 class="text-xl sm:text-3xl font-black text-slate-900">Revising Completed!</h3>
+          <p class="text-slate-600 font-bold text-xs sm:text-base mt-1 mb-4">
             Fantastic job! You've successfully revised and memorized all cards in this session.
           </p>
 
-          <div class="flex gap-2.5 justify-center">
+          <div class="flex gap-2 justify-center">
             <button onclick="playSound('click'); startRevisingMode()" class="cartoon-btn bg-emerald-400 hover:bg-emerald-500 text-slate-900 font-black px-4 rounded-2xl text-xs sm:text-sm">
               🔄 Revise Again
             </button>
@@ -1831,8 +1831,8 @@
 
       container.innerHTML = `
         <div class="animate-pop">
-          <div class="flex justify-between items-center mb-3 sm:mb-4 pb-2 border-b-2 border-slate-200">
-            <span class="text-xs font-bold uppercase tracking-wider text-teal-800 bg-teal-100 px-2.5 py-1 rounded-full border border-teal-300">
+          <div class="flex justify-between items-center mb-3 pb-2 border-b-2 border-slate-200">
+            <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-teal-800 bg-teal-100 px-2 py-0.5 rounded-full border border-teal-300">
               🧩 Auto-Conjugation
             </span>
             <button onclick="playSound('click'); renderCategoryView()" class="cartoon-btn bg-rose-200 hover:bg-rose-300 text-slate-800 text-xs px-2.5 rounded-xl shrink-0">
@@ -1840,42 +1840,42 @@
             </button>
           </div>
 
-          <div class="max-w-md mx-auto py-1 sm:py-2">
-            <div class="flex justify-between text-xs font-bold text-slate-600 mb-1">
-              <span>Verb ${conjCurrentVerbIndex + 1} of ${conjGameVerbs.length} (${currentVerbItem.german} - ${currentVerbItem.english})</span>
+          <div class="max-w-md mx-auto py-1">
+            <div class="flex justify-between text-[11px] sm:text-xs font-bold text-slate-600 mb-1">
+              <span>Verb ${conjCurrentVerbIndex + 1} of ${conjGameVerbs.length} (${currentVerbItem.german})</span>
               <span>Subject ${conjPronounIndex + 1}/6</span>
             </div>
             
-            <div class="w-full bg-slate-200 border-2 border-slate-800 h-3.5 rounded-full overflow-hidden p-0.5 mb-4">
+            <div class="w-full bg-slate-200 border-2 border-slate-800 h-3 sm:h-3.5 rounded-full overflow-hidden p-0.5 mb-3">
               <div class="bg-teal-400 h-full rounded-full transition-all duration-300" style="width: ${(conjPronounIndex / 6) * 100}%"></div>
             </div>
 
-            <div id="quizCard" class="cartoon-card bg-teal-100 p-5 sm:p-6 text-center mb-4">
+            <div id="quizCard" class="cartoon-card bg-teal-100 p-4 sm:p-6 text-center mb-3">
               <div class="flex justify-center items-center gap-2 mb-1">
-                <h3 class="text-2xl sm:text-3xl font-black text-slate-900">${currentVerbItem.german}</h3>
-                <button onclick="speakGerman('${currentVerbItem.german.replace(/'/g, "\\'")}')" class="cartoon-btn bg-white px-2.5 rounded-full text-base sm:text-lg shrink-0" title="Pronounce Verb">
+                <h3 class="text-xl sm:text-3xl font-black text-slate-900">${currentVerbItem.german}</h3>
+                <button onclick="speakGerman('${currentVerbItem.german.replace(/'/g, "\\'")}')" class="cartoon-btn bg-white px-2 rounded-full text-sm sm:text-lg shrink-0" title="Pronounce Verb">
                   🔊
                 </button>
               </div>
-              <p class="text-xs font-bold text-slate-600 mb-3">Meaning: ${currentVerbItem.english}</p>
+              <p class="text-[11px] sm:text-xs font-bold text-slate-600 mb-2">Meaning: ${currentVerbItem.english}</p>
               
-              <div class="bg-white border-2 border-slate-800 py-3 px-4 rounded-2xl shadow-xs inline-flex items-center gap-3">
-                <button onclick="speakGerman('${currentPronounObj.pronoun}')" class="cartoon-btn bg-teal-200 hover:bg-teal-300 px-2.5 py-1 rounded-xl text-sm" title="Read Pronoun">🔊</button>
+              <div class="bg-white border-2 border-slate-800 py-2.5 px-3 rounded-2xl shadow-xs inline-flex items-center gap-2.5">
+                <button onclick="speakGerman('${currentPronounObj.pronoun}')" class="cartoon-btn bg-teal-200 hover:bg-teal-300 px-2 py-0.5 rounded-xl text-xs sm:text-sm" title="Read Pronoun">🔊</button>
                 <div class="text-left">
-                  <span class="text-xs font-black uppercase text-slate-400 block leading-tight">Subject Pronoun</span>
-                  <span class="text-xl sm:text-2xl font-black text-teal-900">${currentPronounObj.pronoun}</span>
+                  <span class="text-[9px] sm:text-xs font-black uppercase text-slate-400 block leading-tight">Subject Pronoun</span>
+                  <span class="text-lg sm:text-2xl font-black text-teal-900">${currentPronounObj.pronoun}</span>
                 </div>
               </div>
             </div>
 
             <form id="quizForm" onsubmit="checkConjugationAnswer(event)" class="space-y-3">
-              <input type="text" id="answerInput" placeholder="Conjugate for ${currentPronounObj.pronoun}..." required autocomplete="off" class="cartoon-input w-full px-4 rounded-2xl text-center text-base sm:text-lg font-bold">
-              <button type="submit" id="submitBtn" class="cartoon-btn w-full bg-indigo-500 hover:bg-indigo-600 text-white font-black rounded-2xl text-base sm:text-lg">
+              <input type="text" id="answerInput" placeholder="Conjugate for ${currentPronounObj.pronoun}..." required autocomplete="off" class="cartoon-input w-full px-4 rounded-2xl text-center text-sm sm:text-lg font-bold">
+              <button type="submit" id="submitBtn" class="cartoon-btn w-full bg-indigo-500 hover:bg-indigo-600 text-white font-black rounded-2xl text-sm sm:text-lg">
                 Check Conjugation! 🚀
               </button>
             </form>
 
-            <div id="feedbackBox" class="mt-4 hidden"></div>
+            <div id="feedbackBox" class="mt-3 hidden"></div>
           </div>
         </div>
       `;
@@ -1914,22 +1914,22 @@
       if (isCorrect) {
         playSound('correct');
         if (typeof confetti === 'function') confetti({ particleCount: 30, spread: 50, origin: { y: 0.7 } });
-        quizCard.className = "cartoon-card bg-emerald-200 p-5 sm:p-6 text-center mb-4";
-        feedbackBox.className = 'p-3.5 rounded-2xl border-2 border-slate-800 bg-emerald-100 animate-pop';
+        quizCard.className = "cartoon-card bg-emerald-200 p-4 sm:p-6 text-center mb-3";
+        feedbackBox.className = 'p-3 rounded-2xl border-2 border-slate-800 bg-emerald-100 animate-pop';
         feedbackBox.innerHTML = `
           <div class="flex items-center justify-center gap-2">
-            <p class="font-black text-sm text-slate-900">🎉 Correct! ${currentPronounObj.pronoun} ${targetAnswer}</p>
+            <p class="font-black text-xs sm:text-sm text-slate-900">🎉 Correct! ${currentPronounObj.pronoun} ${targetAnswer}</p>
             <button onclick="speakGerman('${currentPronounObj.pronoun} ${targetAnswer.replace(/'/g, "\\'")}')" class="cartoon-btn bg-white px-2 py-0.5 rounded-lg text-xs" title="Listen">🔊</button>
           </div>
         `;
       } else {
         playSound('wrong');
-        quizCard.className = "cartoon-card bg-rose-200 p-5 sm:p-6 text-center mb-4 animate-shake";
-        feedbackBox.className = 'p-3.5 rounded-2xl border-2 border-slate-800 bg-rose-100 animate-pop';
+        quizCard.className = "cartoon-card bg-rose-200 p-4 sm:p-6 text-center mb-3 animate-shake";
+        feedbackBox.className = 'p-3 rounded-2xl border-2 border-slate-800 bg-rose-100 animate-pop';
         feedbackBox.innerHTML = `
-          <p class="font-black text-sm text-slate-900">💥 Incorrect!</p>
+          <p class="font-black text-xs sm:text-sm text-slate-900">💥 Incorrect!</p>
           <div class="flex items-center justify-center gap-2 mt-0.5">
-            <p class="text-xs font-bold text-slate-700">Correct conjugation: <strong>${currentPronounObj.pronoun} ${targetAnswer}</strong></p>
+            <p class="text-[11px] sm:text-xs font-bold text-slate-700">Correct: <strong>${currentPronounObj.pronoun} ${targetAnswer}</strong></p>
             <button onclick="speakGerman('${currentPronounObj.pronoun} ${targetAnswer.replace(/'/g, "\\'")}')" class="cartoon-btn bg-white px-2 py-0.5 rounded-lg text-xs" title="Listen">🔊</button>
           </div>
         `;
@@ -1967,15 +1967,15 @@
 
       container.innerHTML = `
         <div class="text-center py-4 sm:py-6 max-w-sm mx-auto animate-pop">
-          <div class="inline-block p-3.5 cartoon-card bg-teal-300 text-3xl sm:text-4xl mb-3">
+          <div class="inline-block p-3 cartoon-card bg-teal-300 text-3xl sm:text-4xl mb-3">
             🏆
           </div>
-          <h3 class="text-2xl sm:text-3xl font-black text-slate-900">Conjugation Completed!</h3>
-          <p class="text-slate-600 font-bold text-sm sm:text-base mt-1 mb-4">
-            You successfully practiced <span class="text-indigo-600 font-black">${conjGameVerbs.length}</span> verbs across all subjects with <span class="text-emerald-600 font-black">${score}</span> correct!
+          <h3 class="text-xl sm:text-3xl font-black text-slate-900">Conjugation Completed!</h3>
+          <p class="text-slate-600 font-bold text-xs sm:text-base mt-1 mb-4">
+            Practiced <span class="text-indigo-600 font-black">${conjGameVerbs.length}</span> verbs across all subjects with <span class="text-emerald-600 font-black">${score}</span> correct!
           </p>
 
-          <div class="flex gap-2.5 justify-center">
+          <div class="flex gap-2 justify-center">
             <button onclick="playSound('click'); startConjugationGameSetup()" class="cartoon-btn bg-emerald-400 hover:bg-emerald-500 text-slate-900 font-black px-4 rounded-2xl text-xs sm:text-sm">
               🔄 Play Again
             </button>
@@ -1989,28 +1989,28 @@
 
     function showFlashcardSetup() {
       container.innerHTML = `
-        <div class="max-w-md mx-auto text-center space-y-4 animate-pop py-2">
-          <h2 class="text-2xl sm:text-3xl font-black text-slate-900">Flashcard Setup 🃏</h2>
+        <div class="max-w-md mx-auto text-center space-y-3 sm:space-y-4 animate-pop py-2">
+          <h2 class="text-xl sm:text-3xl font-black text-slate-900">Flashcard Setup 🃏</h2>
           
           <div class="cartoon-card bg-slate-50 p-3 text-left">
-            <span class="block text-xs font-extrabold text-slate-600 mb-2 uppercase tracking-wide">↔️ Translation Direction</span>
+            <span class="block text-[11px] sm:text-xs font-extrabold text-slate-600 mb-2 uppercase tracking-wide">↔️ Translation Direction</span>
             <div class="grid grid-cols-2 gap-2">
-              <button id="btnDeEn" onclick="setDirection('de_en')" class="cartoon-btn ${testDirection === 'de_en' ? 'bg-amber-300' : 'bg-white hover:bg-slate-100'} text-slate-900 text-xs sm:text-sm px-2 rounded-xl">
+              <button id="btnDeEn" onclick="setDirection('de_en')" class="cartoon-btn ${testDirection === 'de_en' ? 'bg-amber-300' : 'bg-white hover:bg-slate-100'} text-slate-900 text-xs px-2 rounded-xl">
                 🇩🇪 ➔ 🇬🇧 Standard
               </button>
-              <button id="btnEnDe" onclick="setDirection('en_de')" class="cartoon-btn ${testDirection === 'en_de' ? 'bg-amber-300' : 'bg-white hover:bg-slate-100'} text-slate-900 text-xs sm:text-sm px-2 rounded-xl">
+              <button id="btnEnDe" onclick="setDirection('en_de')" class="cartoon-btn ${testDirection === 'en_de' ? 'bg-amber-300' : 'bg-white hover:bg-slate-100'} text-slate-900 text-xs px-2 rounded-xl">
                 🇬🇧 ➔ 🇩🇪 Reverse
               </button>
             </div>
           </div>
 
-          <div class="grid grid-cols-1 gap-3">
+          <div class="grid grid-cols-1 gap-2.5">
             <button onclick="startTest('normal')" class="cartoon-card bg-amber-200 hover:bg-amber-300 p-3 text-left text-slate-900">
               <div class="flex items-center gap-3">
                 <span class="text-2xl">⏱️</span>
                 <div>
-                  <h3 class="font-black text-base leading-snug">Normal Mode</h3>
-                  <p class="text-xs text-slate-700 font-semibold">Go through all cards once and see your score.</p>
+                  <h3 class="font-black text-sm sm:text-base leading-snug">Normal Mode</h3>
+                  <p class="text-[11px] sm:text-xs text-slate-700 font-semibold">Go through all cards once and see your score.</p>
                 </div>
               </div>
             </button>
@@ -2019,8 +2019,8 @@
               <div class="flex items-center gap-3">
                 <span class="text-2xl">🎯</span>
                 <div>
-                  <h3 class="font-black text-base leading-snug">Endless Mastery</h3>
-                  <p class="text-xs text-slate-700 font-semibold">Wrong answers repeat until mastered!</p>
+                  <h3 class="font-black text-sm sm:text-base leading-snug">Endless Mastery</h3>
+                  <p class="text-[11px] sm:text-xs text-slate-700 font-semibold">Wrong answers repeat until mastered!</p>
                 </div>
               </div>
             </button>
@@ -2029,8 +2029,8 @@
               <div class="flex items-center gap-3">
                 <span class="text-2xl">♾️</span>
                 <div>
-                  <h3 class="font-black text-base leading-snug">Pure Endless</h3>
-                  <p class="text-xs text-slate-700 font-semibold">Infinite loop of random cards.</p>
+                  <h3 class="font-black text-sm sm:text-base leading-snug">Pure Endless</h3>
+                  <p class="text-[11px] sm:text-xs text-slate-700 font-semibold">Infinite loop of random cards.</p>
                 </div>
               </div>
             </button>
@@ -2126,8 +2126,8 @@
 
       container.innerHTML = `
         <div class="animate-pop">
-          <div class="flex justify-between items-center mb-3 sm:mb-4 pb-2 border-b-2 border-slate-200">
-            <span class="text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-100 px-2.5 py-1 rounded-full border border-amber-300">
+          <div class="flex justify-between items-center mb-3 pb-2 border-b-2 border-slate-200">
+            <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-100 px-2.5 py-0.5 rounded-full border border-amber-300">
               ⚡ Multiple Choice
             </span>
             <button onclick="playSound('click'); renderCategoryView()" class="cartoon-btn bg-rose-200 hover:bg-rose-300 text-slate-800 text-xs px-2.5 rounded-xl shrink-0">
@@ -2135,35 +2135,35 @@
             </button>
           </div>
 
-          <div class="max-w-md mx-auto py-1 sm:py-2">
-            <div class="flex justify-between text-xs font-bold text-slate-600 mb-1">
+          <div class="max-w-md mx-auto py-1">
+            <div class="flex justify-between text-[11px] sm:text-xs font-bold text-slate-600 mb-1">
               <span>Card ${currentIndex + 1} of ${testWords.length}</span>
               <span>Score: ${score} ⭐</span>
             </div>
             
-            <div class="w-full bg-slate-200 border-2 border-slate-800 h-3.5 rounded-full overflow-hidden p-0.5 mb-4">
+            <div class="w-full bg-slate-200 border-2 border-slate-800 h-3 sm:h-3.5 rounded-full overflow-hidden p-0.5 mb-3">
               <div id="speedBar" class="bg-amber-400 h-full rounded-full transition-all duration-1000" style="width: 100%"></div>
             </div>
 
-            <div id="quizCard" class="cartoon-card bg-amber-200 p-5 sm:p-6 text-center mb-4">
+            <div id="quizCard" class="cartoon-card bg-amber-200 p-4 sm:p-6 text-center mb-3">
               <div class="flex justify-center items-center gap-2 mb-1">
-                <h3 class="text-2xl sm:text-4xl font-black text-slate-900">${displayGermanPrompt}</h3>
-                <button onclick="speakGerman('${currentWord.german.replace(/'/g, "\\'")}')" class="cartoon-btn bg-white px-2.5 rounded-full text-base sm:text-lg shrink-0">
+                <h3 class="text-xl sm:text-3xl font-black text-slate-900">${displayGermanPrompt}</h3>
+                <button onclick="speakGerman('${currentWord.german.replace(/'/g, "\\'")}')" class="cartoon-btn bg-white px-2 rounded-full text-sm sm:text-lg shrink-0">
                   🔊
                 </button>
               </div>
-              <p class="text-xs font-bold text-slate-700">Choose the correct English translation!</p>
+              <p class="text-[11px] sm:text-xs font-bold text-slate-700">Choose the correct English translation!</p>
             </div>
 
-            <div id="optionsGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            <div id="optionsGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-2">
               ${options.map(opt => `
-                <button onclick="checkMCOption('${opt.replace(/'/g, "\\'")}')" class="cartoon-btn mc-opt-btn bg-white hover:bg-indigo-50 text-slate-900 text-sm sm:text-base font-black p-3 rounded-2xl w-full text-center">
+                <button onclick="checkMCOption('${opt.replace(/'/g, "\\'")}')" class="cartoon-btn mc-opt-btn bg-white hover:bg-indigo-50 text-slate-900 text-xs sm:text-base font-black p-3 rounded-2xl w-full text-center">
                   ${opt}
                 </button>
               `).join('')}
             </div>
 
-            <div id="feedbackBox" class="mt-4 hidden"></div>
+            <div id="feedbackBox" class="mt-3 hidden"></div>
           </div>
         </div>
       `;
@@ -2199,9 +2199,9 @@
       btns.forEach(b => {
         b.disabled = true;
         if (checkAnswerMatch(b.innerText.trim(), currentWord.english)) {
-          b.className = "cartoon-btn mc-opt-btn bg-emerald-300 text-slate-900 text-sm sm:text-base font-black p-3 rounded-2xl w-full text-center";
+          b.className = "cartoon-btn mc-opt-btn bg-emerald-300 text-slate-900 text-xs sm:text-base font-black p-3 rounded-2xl w-full text-center";
         } else if (b.innerText.trim() === selectedOpt) {
-          b.className = "cartoon-btn mc-opt-btn bg-rose-300 text-slate-900 text-sm sm:text-base font-black p-3 rounded-2xl w-full text-center";
+          b.className = "cartoon-btn mc-opt-btn bg-rose-300 text-slate-900 text-xs sm:text-base font-black p-3 rounded-2xl w-full text-center";
         }
       });
 
@@ -2209,22 +2209,22 @@
         score++;
         playSound('correct');
         if (typeof confetti === 'function') confetti({ particleCount: 30, spread: 50, origin: { y: 0.7 } });
-        quizCard.className = "cartoon-card bg-emerald-200 p-5 sm:p-6 text-center mb-4";
-        feedbackBox.className = "p-3.5 rounded-2xl border-2 border-slate-800 bg-emerald-100 animate-pop";
-        feedbackBox.innerHTML = `<p class="font-black text-sm text-slate-900">🎉 Correct! (Advanced to Box ${currentWord.box})</p>`;
+        quizCard.className = "cartoon-card bg-emerald-200 p-4 sm:p-6 text-center mb-3";
+        feedbackBox.className = "p-3 rounded-2xl border-2 border-slate-800 bg-emerald-100 animate-pop";
+        feedbackBox.innerHTML = `<p class="font-black text-xs sm:text-sm text-slate-900">🎉 Correct! (Box ${currentWord.box})</p>`;
       } else {
         playSound('wrong');
-        quizCard.className = "cartoon-card bg-rose-200 p-5 sm:p-6 text-center mb-4 animate-shake";
-        feedbackBox.className = "p-3.5 rounded-2xl border-2 border-slate-800 bg-rose-100 animate-pop";
+        quizCard.className = "cartoon-card bg-rose-200 p-4 sm:p-6 text-center mb-3 animate-shake";
+        feedbackBox.className = "p-3 rounded-2xl border-2 border-slate-800 bg-rose-100 animate-pop";
         feedbackBox.innerHTML = `
-          <p class="font-black text-sm text-slate-900">${selectedOpt === null ? '⏰ Time\'s up!' : '💥 Incorrect!'}</p>
-          <p class="text-xs font-bold text-slate-700 mt-0.5">Valid answers: <strong>${currentWord.english}</strong></p>
+          <p class="font-black text-xs sm:text-sm text-slate-900">${selectedOpt === null ? '⏰ Time\'s up!' : '💥 Incorrect!'}</p>
+          <p class="text-[11px] sm:text-xs font-bold text-slate-700 mt-0.5">Valid answers: <strong>${currentWord.english}</strong></p>
         `;
       }
 
       feedbackBox.classList.remove('hidden');
       feedbackBox.innerHTML += `
-        <button onclick="handleNextQuestion()" class="cartoon-btn w-full bg-indigo-500 hover:bg-indigo-600 text-white font-black rounded-xl text-sm mt-3">
+        <button onclick="handleNextQuestion()" class="cartoon-btn w-full bg-indigo-500 hover:bg-indigo-600 text-white font-black rounded-xl text-xs sm:text-sm p-2.5 mt-2.5">
           Next Card (Press Enter ↵)
         </button>
       `;
@@ -2235,8 +2235,8 @@
 
       container.innerHTML = `
         <div class="animate-pop">
-          <div class="flex justify-between items-center mb-3 sm:mb-4 pb-2 border-b-2 border-slate-200">
-            <span class="text-xs font-bold uppercase tracking-wider text-sky-800 bg-sky-100 px-2.5 py-1 rounded-full border border-sky-300">
+          <div class="flex justify-between items-center mb-3 pb-2 border-b-2 border-slate-200">
+            <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-sky-800 bg-sky-100 px-2.5 py-0.5 rounded-full border border-sky-300">
               🎧 Audio Challenge
             </span>
             <button onclick="playSound('click'); renderCategoryView()" class="cartoon-btn bg-rose-200 hover:bg-rose-300 text-slate-800 text-xs px-2.5 rounded-xl shrink-0">
@@ -2244,31 +2244,32 @@
             </button>
           </div>
 
-          <div class="max-w-md mx-auto py-1 sm:py-2">
-            <div class="flex justify-between text-xs font-bold text-slate-600 mb-1">
+          <div class="max-w-md mx-auto py-1">
+            <div class="flex justify-between text-[11px] sm:text-xs font-bold text-slate-600 mb-1">
               <span>Card ${currentIndex + 1} of ${testWords.length}</span>
               <span>Score: ${score} ⭐</span>
             </div>
             
-            <div class="w-full bg-slate-200 border-2 border-slate-800 h-3.5 rounded-full overflow-hidden p-0.5 mb-4">
+            <div class="w-full bg-slate-200 border-2 border-slate-800 h-3 sm:h-3.5 rounded-full overflow-hidden p-0.5 mb-3">
               <div class="bg-sky-400 h-full rounded-full transition-all duration-300" style="width: ${((currentIndex + 1) / testWords.length) * 100}%"></div>
             </div>
 
-            <div id="quizCard" class="cartoon-card bg-sky-200 p-6 text-center mb-4">
-              <button onclick="speakGerman('${currentWord.german.replace(/'/g, "\\'")}')" class="cartoon-btn bg-white hover:bg-sky-50 text-slate-900 font-black px-6 py-3 rounded-2xl text-lg sm:text-xl shadow-sm inline-flex items-center gap-2 mb-2">
+            <div id="quizCard" class="cartoon-card bg-sky-100 p-4 sm:p-6 text-center mb-3">
+              <span class="text-[10px] sm:text-xs font-black uppercase text-slate-500 block mb-1">Listen carefully</span>
+              <button onclick="speakGerman('${currentWord.german.replace(/'/g, "\\'")}')" class="cartoon-btn bg-white hover:bg-sky-50 text-slate-900 font-black px-4 py-2.5 rounded-2xl text-base sm:text-xl shadow-sm my-1">
                 🔊 Play Audio Again
               </button>
-              <p class="text-xs font-bold text-slate-700">Type what you hear in German!</p>
+              <p class="text-[11px] sm:text-xs font-bold text-slate-600 mt-1">Type what you hear in German!</p>
             </div>
 
-            <form id="quizForm" onsubmit="checkTextAnswer(event)" class="space-y-3">
-              <input type="text" id="answerInput" placeholder="Type German word..." required autocomplete="off" class="cartoon-input w-full px-4 rounded-2xl text-center text-base sm:text-lg font-bold">
-              <button type="submit" id="submitBtn" class="cartoon-btn w-full bg-indigo-500 hover:bg-indigo-600 text-white font-black rounded-2xl text-base sm:text-lg">
+            <form id="quizForm" onsubmit="checkAudioAnswer(event)" class="space-y-3">
+              <input type="text" id="answerInput" placeholder="Type German word..." required autocomplete="off" class="cartoon-input w-full px-4 rounded-2xl text-center text-sm sm:text-lg font-bold">
+              <button type="submit" id="submitBtn" class="cartoon-btn w-full bg-indigo-500 hover:bg-indigo-600 text-white font-black rounded-2xl text-sm sm:text-lg">
                 Check Answer! 🚀
               </button>
             </form>
 
-            <div id="feedbackBox" class="mt-4 hidden"></div>
+            <div id="feedbackBox" class="mt-3 hidden"></div>
           </div>
         </div>
       `;
@@ -2280,20 +2281,59 @@
       }, 150);
     }
 
+    function checkAudioAnswer(e) {
+      if (e) e.preventDefault();
+      if (isWaitingForNext) {
+        handleNextQuestion();
+        return;
+      }
+
+      const input = document.getElementById('answerInput');
+      const feedbackBox = document.getElementById('feedbackBox');
+      const submitBtn = document.getElementById('submitBtn');
+      const quizCard = document.getElementById('quizCard');
+      const currentWord = testWords[currentIndex];
+
+      const isCorrect = checkAnswerMatch(input.value, currentWord.german);
+      updateWordSRS(currentWord.id, isCorrect);
+
+      input.disabled = true;
+      isWaitingForNext = true;
+      totalQuestionsAnswered++;
+      if (isCorrect) score++;
+
+      if (isCorrect) {
+        playSound('correct');
+        if (typeof confetti === 'function') confetti({ particleCount: 30, spread: 50, origin: { y: 0.7 } });
+        quizCard.className = "cartoon-card bg-emerald-200 p-4 sm:p-6 text-center mb-3";
+        feedbackBox.className = "p-3 rounded-2xl border-2 border-slate-800 bg-emerald-100 animate-pop";
+        feedbackBox.innerHTML = `<p class="font-black text-xs sm:text-sm text-slate-900">🎉 Correct! (${currentWord.german} - ${currentWord.english})</p>`;
+      } else {
+        playSound('wrong');
+        quizCard.className = "cartoon-card bg-rose-200 p-4 sm:p-6 text-center mb-3 animate-shake";
+        feedbackBox.className = "p-3 rounded-2xl border-2 border-slate-800 bg-rose-100 animate-pop";
+        feedbackBox.innerHTML = `
+          <p class="font-black text-xs sm:text-sm text-slate-900">💥 Incorrect!</p>
+          <p class="text-[11px] sm:text-xs font-bold text-slate-700 mt-0.5">Correct word: <strong>${currentWord.german}</strong> (${currentWord.english})</p>
+        `;
+      }
+
+      feedbackBox.classList.remove('hidden');
+      submitBtn.innerText = 'Next Card (Press Enter ↵)';
+    }
+
     function renderFillQuestion() {
       const currentWord = testWords[currentIndex];
       const sentence = currentWord.example;
-      const targetGermanWord = currentWord.german;
-
-      let maskedSentence = sentence;
-      const escapedWord = targetGermanWord.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-      const regex = new RegExp(escapedWord, 'gi');
-      maskedSentence = maskedSentence.replace(regex, '____');
+      const germanWord = currentWord.german;
+      
+      const regex = new RegExp(germanWord, 'gi');
+      const maskedSentence = sentence.replace(regex, '_____');
 
       container.innerHTML = `
         <div class="animate-pop">
-          <div class="flex justify-between items-center mb-3 sm:mb-4 pb-2 border-b-2 border-slate-200">
-            <span class="text-xs font-bold uppercase tracking-wider text-rose-800 bg-rose-100 px-2.5 py-1 rounded-full border border-rose-300">
+          <div class="flex justify-between items-center mb-3 pb-2 border-b-2 border-slate-200">
+            <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-rose-800 bg-rose-100 px-2.5 py-0.5 rounded-full border border-rose-300">
               📝 Fill in the Blank
             </span>
             <button onclick="playSound('click'); renderCategoryView()" class="cartoon-btn bg-rose-200 hover:bg-rose-300 text-slate-800 text-xs px-2.5 rounded-xl shrink-0">
@@ -2301,37 +2341,39 @@
             </button>
           </div>
 
-          <div class="max-w-md mx-auto py-1 sm:py-2">
-            <div class="flex justify-between text-xs font-bold text-slate-600 mb-1">
+          <div class="max-w-md mx-auto py-1">
+            <div class="flex justify-between text-[11px] sm:text-xs font-bold text-slate-600 mb-1">
               <span>Card ${currentIndex + 1} of ${testWords.length}</span>
               <span>Score: ${score} ⭐</span>
             </div>
             
-            <div class="w-full bg-slate-200 border-2 border-slate-800 h-3.5 rounded-full overflow-hidden p-0.5 mb-4">
+            <div class="w-full bg-slate-200 border-2 border-slate-800 h-3 sm:h-3.5 rounded-full overflow-hidden p-0.5 mb-3">
               <div class="bg-rose-400 h-full rounded-full transition-all duration-300" style="width: ${((currentIndex + 1) / testWords.length) * 100}%"></div>
             </div>
 
-            <div id="quizCard" class="cartoon-card bg-rose-100 p-5 sm:p-6 text-center mb-4">
-              <h3 class="text-xl sm:text-2xl font-black text-slate-900 mb-2">"${maskedSentence}"</h3>
-              <p class="text-xs font-bold text-slate-600">English clue: <strong>${currentWord.english}</strong></p>
+            <div id="quizCard" class="cartoon-card bg-rose-100 p-4 sm:p-6 text-center mb-3">
+              <span class="text-[10px] sm:text-xs font-black uppercase text-slate-500 block mb-1">Complete the sentence</span>
+              <h3 class="text-base sm:text-xl font-black text-slate-900 my-2">"${maskedSentence}"</h3>
+              <p class="text-[11px] sm:text-xs font-bold text-slate-600">Meaning: ${currentWord.english}</p>
             </div>
 
             <form id="quizForm" onsubmit="checkFillAnswer(event)" class="space-y-3">
-              <input type="text" id="answerInput" placeholder="Missing German word..." required autocomplete="off" class="cartoon-input w-full px-4 rounded-2xl text-center text-base sm:text-lg font-bold">
-              <button type="submit" id="submitBtn" class="cartoon-btn w-full bg-indigo-500 hover:bg-indigo-600 text-white font-black rounded-2xl text-base sm:text-lg">
-                Check Blank! 🚀
+              <input type="text" id="answerInput" placeholder="Missing German word..." required autocomplete="off" class="cartoon-input w-full px-4 rounded-2xl text-center text-sm sm:text-lg font-bold">
+              <button type="submit" id="submitBtn" class="cartoon-btn w-full bg-indigo-500 hover:bg-indigo-600 text-white font-black rounded-2xl text-sm sm:text-lg">
+                Check Answer! 🚀
               </button>
             </form>
 
-            <div id="feedbackBox" class="mt-4 hidden"></div>
+            <div id="feedbackBox" class="mt-3 hidden"></div>
           </div>
         </div>
       `;
 
       setTimeout(() => {
+        speakGerman(currentWord.german);
         const inputElem = document.getElementById('answerInput');
         if (inputElem) inputElem.focus();
-      }, 50);
+      }, 150);
     }
 
     function checkFillAnswer(e) {
@@ -2345,98 +2387,90 @@
       const feedbackBox = document.getElementById('feedbackBox');
       const submitBtn = document.getElementById('submitBtn');
       const quizCard = document.getElementById('quizCard');
-
       const currentWord = testWords[currentIndex];
-      const targetAnswer = currentWord.german;
-      const isCorrect = checkAnswerMatch(input.value, targetAnswer);
+
+      const isCorrect = checkAnswerMatch(input.value, currentWord.german);
+      updateWordSRS(currentWord.id, isCorrect);
 
       input.disabled = true;
       isWaitingForNext = true;
       totalQuestionsAnswered++;
-
-      updateWordSRS(currentWord.id, isCorrect);
-      speakGerman(targetAnswer);
+      if (isCorrect) score++;
 
       if (isCorrect) {
-        score++;
         playSound('correct');
         if (typeof confetti === 'function') confetti({ particleCount: 30, spread: 50, origin: { y: 0.7 } });
-        quizCard.className = "cartoon-card bg-emerald-200 p-5 sm:p-6 text-center mb-4";
-        feedbackBox.className = "p-3.5 rounded-2xl border-2 border-slate-800 bg-emerald-100 animate-pop";
-        feedbackBox.innerHTML = `<p class="font-black text-sm text-slate-900">🎉 Correct! "${currentWord.example}"</p>`;
+        quizCard.className = "cartoon-card bg-emerald-200 p-4 sm:p-6 text-center mb-3";
+        feedbackBox.className = "p-3 rounded-2xl border-2 border-slate-800 bg-emerald-100 animate-pop";
+        feedbackBox.innerHTML = `<p class="font-black text-xs sm:text-sm text-slate-900">🎉 Correct! (${currentWord.german})</p>`;
       } else {
         playSound('wrong');
-        quizCard.className = "cartoon-card bg-rose-200 p-5 sm:p-6 text-center mb-4 animate-shake";
-        feedbackBox.className = "p-3.5 rounded-2xl border-2 border-slate-800 bg-rose-100 animate-pop";
+        quizCard.className = "cartoon-card bg-rose-200 p-4 sm:p-6 text-center mb-3 animate-shake";
+        feedbackBox.className = "p-3 rounded-2xl border-2 border-slate-800 bg-rose-100 animate-pop";
         feedbackBox.innerHTML = `
-          <p class="font-black text-sm text-slate-900">💥 Incorrect!</p>
-          <p class="text-xs font-bold text-slate-700 mt-0.5">Correct word: <strong>${targetAnswer}</strong></p>
+          <p class="font-black text-xs sm:text-sm text-slate-900">💥 Incorrect!</p>
+          <p class="text-[11px] sm:text-xs font-bold text-slate-700 mt-0.5">Correct word: <strong>${currentWord.german}</strong></p>
         `;
       }
 
       feedbackBox.classList.remove('hidden');
       submitBtn.innerText = 'Next Card (Press Enter ↵)';
-      submitBtn.onclick = function(evt) {
-        evt.preventDefault();
-        handleNextQuestion();
-      };
-      submitBtn.focus();
     }
 
     function renderFlashcardQuestion() {
       const currentWord = testWords[currentIndex];
-      const promptText = testDirection === 'de_en' ? currentWord.german : currentWord.english;
+      const isRev = testDirection === 'en_de';
+      const promptText = isRev ? currentWord.english : currentWord.german;
+      const targetText = isRev ? currentWord.german : currentWord.english;
 
       container.innerHTML = `
         <div class="animate-pop">
-          <div class="flex justify-between items-center mb-3 sm:mb-4 pb-2 border-b-2 border-slate-200">
-            <span class="text-xs font-bold uppercase tracking-wider text-purple-800 bg-purple-100 px-2.5 py-1 rounded-full border border-purple-300">
-              🃏 Flashcards (${testMode})
+          <div class="flex justify-between items-center mb-3 pb-2 border-b-2 border-slate-200">
+            <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-purple-800 bg-purple-100 px-2.5 py-0.5 rounded-full border border-purple-300">
+              🃏 Classic Flashcards (${testMode})
             </span>
             <button onclick="playSound('click'); renderCategoryView()" class="cartoon-btn bg-rose-200 hover:bg-rose-300 text-slate-800 text-xs px-2.5 rounded-xl shrink-0">
               ✕ Quit
             </button>
           </div>
 
-          <div class="max-w-md mx-auto py-1 sm:py-2">
-            <div class="flex justify-between text-xs font-bold text-slate-600 mb-1">
+          <div class="max-w-md mx-auto py-1">
+            <div class="flex justify-between text-[11px] sm:text-xs font-bold text-slate-600 mb-1">
               <span>Card ${currentIndex + 1} of ${testWords.length}</span>
               <span>Score: ${score} ⭐</span>
             </div>
             
-            <div class="w-full bg-slate-200 border-2 border-slate-800 h-3.5 rounded-full overflow-hidden p-0.5 mb-4">
+            <div class="w-full bg-slate-200 border-2 border-slate-800 h-3 sm:h-3.5 rounded-full overflow-hidden p-0.5 mb-3">
               <div class="bg-purple-400 h-full rounded-full transition-all duration-300" style="width: ${((currentIndex + 1) / testWords.length) * 100}%"></div>
             </div>
 
-            <div id="quizCard" class="cartoon-card bg-amber-50 p-6 text-center mb-4 min-h-[180px] flex flex-col justify-center items-center">
-              <div class="flex items-center gap-2 mb-1">
-                <h3 class="text-3xl sm:text-4xl font-black text-slate-900">${promptText}</h3>
-                ${testDirection === 'de_en' ? `
-                  <button onclick="speakGerman('${currentWord.german.replace(/'/g, "\\'")}')" class="cartoon-btn bg-white px-2.5 rounded-full text-base shrink-0">
-                    🔊
-                  </button>
-                ` : ''}
+            <div id="quizCard" class="cartoon-card bg-amber-50 p-5 sm:p-6 text-center mb-3 relative">
+              <div class="flex justify-end mb-1">
+                <button onclick="speakGerman('${currentWord.german.replace(/'/g, "\\'")}')" class="cartoon-btn bg-white px-2 rounded-full text-sm sm:text-base shrink-0">
+                  🔊
+                </button>
               </div>
-              <p class="text-xs font-bold text-slate-500 mt-1">${testDirection === 'de_en' ? 'Translate to English' : 'Translate to German'}</p>
+              <h3 class="text-2xl sm:text-4xl font-black text-slate-900 my-2">${promptText}</h3>
+              ${currentWord.example && !isRev ? `<p class="text-[11px] sm:text-xs text-indigo-700 font-semibold italic mt-2">💬 "${currentWord.example}"</p>` : ''}
             </div>
 
             <form id="quizForm" onsubmit="checkFlashcardAnswer(event)" class="space-y-3">
-              <input type="text" id="answerInput" placeholder="Type your translation..." required autocomplete="off" class="cartoon-input w-full px-4 rounded-2xl text-center text-base sm:text-lg font-bold">
-              <button type="submit" id="submitBtn" class="cartoon-btn w-full bg-indigo-500 hover:bg-indigo-600 text-white font-black rounded-2xl text-base sm:text-lg">
+              <input type="text" id="answerInput" placeholder="Type translation..." required autocomplete="off" class="cartoon-input w-full px-4 rounded-2xl text-center text-sm sm:text-lg font-bold">
+              <button type="submit" id="submitBtn" class="cartoon-btn w-full bg-indigo-500 hover:bg-indigo-600 text-white font-black rounded-2xl text-sm sm:text-lg">
                 Check Answer! 🚀
               </button>
             </form>
 
-            <div id="feedbackBox" class="mt-4 hidden"></div>
+            <div id="feedbackBox" class="mt-3 hidden"></div>
           </div>
         </div>
       `;
 
       setTimeout(() => {
-        if (testDirection === 'de_en') speakGerman(currentWord.german);
+        if (!isRev) speakGerman(currentWord.german);
         const inputElem = document.getElementById('answerInput');
         if (inputElem) inputElem.focus();
-      }, 50);
+      }, 150);
     }
 
     function checkFlashcardAnswer(e) {
@@ -2450,112 +2484,64 @@
       const feedbackBox = document.getElementById('feedbackBox');
       const submitBtn = document.getElementById('submitBtn');
       const quizCard = document.getElementById('quizCard');
-
       const currentWord = testWords[currentIndex];
-      const targetAnswer = testDirection === 'de_en' ? currentWord.english : currentWord.german;
-      const isCorrect = checkAnswerMatch(input.value, targetAnswer);
+
+      const isRev = testDirection === 'en_de';
+      const targetText = isRev ? currentWord.german : currentWord.english;
+
+      const isCorrect = checkAnswerMatch(input.value, targetText);
+      updateWordSRS(currentWord.id, isCorrect);
 
       input.disabled = true;
       isWaitingForNext = true;
       totalQuestionsAnswered++;
+      if (isCorrect) score++;
 
-      updateWordSRS(currentWord.id, isCorrect);
-      if (testDirection === 'en_de') speakGerman(targetAnswer);
-
-      if (isCorrect) {
-        score++;
-        playSound('correct');
-        if (typeof confetti === 'function') confetti({ particleCount: 30, spread: 50, origin: { y: 0.7 } });
-        quizCard.className = "cartoon-card bg-emerald-200 p-6 text-center mb-4 min-h-[180px] flex flex-col justify-center items-center";
-        feedbackBox.className = "p-3.5 rounded-2xl border-2 border-slate-800 bg-emerald-100 animate-pop";
-        feedbackBox.innerHTML = `<p class="font-black text-sm text-slate-900">🎉 Correct! (${currentWord.german} = ${currentWord.english})</p>`;
-      } else {
-        playSound('wrong');
-        quizCard.className = "cartoon-card bg-rose-200 p-6 text-center mb-4 min-h-[180px] flex flex-col justify-center items-center animate-shake";
-        feedbackBox.className = "p-3.5 rounded-2xl border-2 border-slate-800 bg-rose-100 animate-pop";
-        feedbackBox.innerHTML = `
-          <p class="font-black text-sm text-slate-900">💥 Incorrect!</p>
-          <p class="text-xs font-bold text-slate-700 mt-0.5">Correct answer: <strong>${targetAnswer}</strong></p>
-        `;
-        if (testMode === 'mastery') {
-          testWords.push(currentWord);
-        }
+      if (testMode === 'mastery' && !isCorrect) {
+        testWords.push(currentWord);
       }
 
-      feedbackBox.classList.remove('hidden');
-      submitBtn.innerText = 'Next Card (Press Enter ↵)';
-      submitBtn.onclick = function(evt) {
-        evt.preventDefault();
-        handleNextQuestion();
-      };
-      submitBtn.focus();
-    }
-
-    function checkTextAnswer(e) {
-      if (e) e.preventDefault();
-      if (isWaitingForNext) {
-        handleNextQuestion();
-        return;
-      }
-
-      const input = document.getElementById('answerInput');
-      const feedbackBox = document.getElementById('feedbackBox');
-      const submitBtn = document.getElementById('submitBtn');
-      const quizCard = document.getElementById('quizCard');
-
-      const currentWord = testWords[currentIndex];
-      const targetAnswer = currentWord.german;
-      const isCorrect = checkAnswerMatch(input.value, targetAnswer);
-
-      input.disabled = true;
-      isWaitingForNext = true;
-      totalQuestionsAnswered++;
-
-      updateWordSRS(currentWord.id, isCorrect);
-      speakGerman(targetAnswer);
-
       if (isCorrect) {
-        score++;
         playSound('correct');
         if (typeof confetti === 'function') confetti({ particleCount: 30, spread: 50, origin: { y: 0.7 } });
-        quizCard.className = "cartoon-card bg-emerald-200 p-6 text-center mb-4";
-        feedbackBox.className = "p-3.5 rounded-2xl border-2 border-slate-800 bg-emerald-100 animate-pop";
-        feedbackBox.innerHTML = `<p class="font-black text-sm text-slate-900">🎉 Correct! ${currentWord.german} (${currentWord.english})</p>`;
+        quizCard.className = "cartoon-card bg-emerald-200 p-5 sm:p-6 text-center mb-3";
+        feedbackBox.className = "p-3 rounded-2xl border-2 border-slate-800 bg-emerald-100 animate-pop";
+        feedbackBox.innerHTML = `<p class="font-black text-xs sm:text-sm text-slate-900">🎉 Correct! (Box ${currentWord.box})</p>`;
       } else {
         playSound('wrong');
-        quizCard.className = "cartoon-card bg-rose-200 p-6 text-center mb-4 animate-shake";
-        feedbackBox.className = "p-3.5 rounded-2xl border-2 border-slate-800 bg-rose-100 animate-pop";
+        quizCard.className = "cartoon-card bg-rose-200 p-5 sm:p-6 text-center mb-3 animate-shake";
+        feedbackBox.className = "p-3 rounded-2xl border-2 border-slate-800 bg-rose-100 animate-pop";
         feedbackBox.innerHTML = `
-          <p class="font-black text-sm text-slate-900">💥 Incorrect!</p>
-          <p class="text-xs font-bold text-slate-700 mt-0.5">Correct answer: <strong>${targetAnswer}</strong></p>
+          <p class="font-black text-xs sm:text-sm text-slate-900">💥 Incorrect!</p>
+          <p class="text-[11px] sm:text-xs font-bold text-slate-700 mt-0.5">Correct answer: <strong>${targetText}</strong></p>
         `;
       }
 
       feedbackBox.classList.remove('hidden');
       submitBtn.innerText = 'Next Card (Press Enter ↵)';
-      submitBtn.onclick = function(evt) {
-        evt.preventDefault();
-        handleNextQuestion();
-      };
-      submitBtn.focus();
     }
 
     function handleNextQuestion() {
       clearSpeedTimer();
+      playSound('click');
       currentIndex++;
-      if (testMode === 'pure_endless') {
-        testWords.sort(() => 0.5 - Math.random());
-        currentIndex = 0;
+
+      if (testGameMode === 'pure_endless') {
+        const catWords = words.filter(w => w.categoryId === selectedCategory.id);
+        if (catWords.length > 0) {
+          const randomWord = catWords[Math.floor(Math.random() * catWords.length)];
+          testWords.push(randomWord);
+        }
       }
 
       if (currentIndex >= testWords.length) {
-        renderSummary();
+        renderTestSummary();
       } else {
         renderTestQuestion();
       }
     }
 
-    function renderSummary() {
+    function renderTestSummary() {
       clearSpeedTimer();
       playSound('victory');
 
@@ -2567,17 +2553,17 @@
 
       container.innerHTML = `
         <div class="text-center py-4 sm:py-6 max-w-sm mx-auto animate-pop">
-          <div class="inline-block p-3.5 cartoon-card bg-amber-300 text-3xl sm:text-4xl mb-3">
+          <div class="inline-block p-3 cartoon-card bg-amber-300 text-3xl sm:text-4xl mb-3">
             🏆
           </div>
-          <h3 class="text-2xl sm:text-3xl font-black text-slate-900">Session Completed!</h3>
-          <p class="text-slate-600 font-bold text-sm sm:text-base mt-1 mb-4">
+          <h3 class="text-xl sm:text-3xl font-black text-slate-900">Quiz Completed!</h3>
+          <p class="text-slate-600 font-bold text-xs sm:text-base mt-1 mb-3">
             You scored <span class="text-indigo-600 font-black">${score}</span> out of <span class="text-slate-900 font-black">${totalQuestionsAnswered}</span> (${percent}%)!
           </p>
 
-          <div class="flex gap-2.5 justify-center">
+          <div class="flex gap-2 justify-center">
             <button onclick="playSound('click'); openModeSelection()" class="cartoon-btn bg-emerald-400 hover:bg-emerald-500 text-slate-900 font-black px-4 rounded-2xl text-xs sm:text-sm">
-              🔄 Play Again
+              🎮 Play Again
             </button>
             <button onclick="playSound('click'); renderCategoryView()" class="cartoon-btn bg-white hover:bg-slate-100 text-slate-800 font-black px-4 rounded-2xl text-xs sm:text-sm">
               📂 Back to Deck
@@ -2587,8 +2573,10 @@
       `;
     }
 
-    // Initial render on load
+    // Initial Load
     renderHomeView();
+    updateHeaderStats();
   </script>
 </body>
 </html>
+```[cite: 2]
