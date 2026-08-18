@@ -2254,15 +2254,14 @@
               <div class="bg-sky-400 h-full rounded-full transition-all duration-300" style="width: ${((currentIndex + 1) / testWords.length) * 100}%"></div>
             </div>
 
-            <div id="quizCard" class="cartoon-card bg-sky-100 p-6 text-center mb-4">
-              <span class="text-xs font-black uppercase text-slate-500 block mb-1">Listen carefully</span>
-              <button onclick="speakGerman('${currentWord.german.replace(/'/g, "\\'")}')" class="cartoon-btn bg-white hover:bg-sky-50 text-slate-900 font-black px-6 py-3 rounded-2xl text-lg sm:text-xl shadow-sm my-2">
+            <div id="quizCard" class="cartoon-card bg-sky-200 p-6 text-center mb-4">
+              <button onclick="speakGerman('${currentWord.german.replace(/'/g, "\\'")}')" class="cartoon-btn bg-white hover:bg-sky-50 text-slate-900 font-black px-6 py-3 rounded-2xl text-lg sm:text-xl shadow-sm inline-flex items-center gap-2 mb-2">
                 🔊 Play Audio Again
               </button>
-              <p class="text-xs font-bold text-slate-600 mt-2">Type what you hear in German!</p>
+              <p class="text-xs font-bold text-slate-700">Type what you hear in German!</p>
             </div>
 
-            <form id="quizForm" onsubmit="checkAudioAnswer(event)" class="space-y-3">
+            <form id="quizForm" onsubmit="checkTextAnswer(event)" class="space-y-3">
               <input type="text" id="answerInput" placeholder="Type German word..." required autocomplete="off" class="cartoon-input w-full px-4 rounded-2xl text-center text-base sm:text-lg font-bold">
               <button type="submit" id="submitBtn" class="cartoon-btn w-full bg-indigo-500 hover:bg-indigo-600 text-white font-black rounded-2xl text-base sm:text-lg">
                 Check Answer! 🚀
@@ -2281,54 +2280,15 @@
       }, 150);
     }
 
-    function checkAudioAnswer(e) {
-      if (e) e.preventDefault();
-      if (isWaitingForNext) {
-        handleNextQuestion();
-        return;
-      }
-
-      const input = document.getElementById('answerInput');
-      const feedbackBox = document.getElementById('feedbackBox');
-      const submitBtn = document.getElementById('submitBtn');
-      const quizCard = document.getElementById('quizCard');
-      const currentWord = testWords[currentIndex];
-
-      const isCorrect = checkAnswerMatch(input.value, currentWord.german);
-      updateWordSRS(currentWord.id, isCorrect);
-
-      input.disabled = true;
-      isWaitingForNext = true;
-      totalQuestionsAnswered++;
-      if (isCorrect) score++;
-
-      if (isCorrect) {
-        playSound('correct');
-        if (typeof confetti === 'function') confetti({ particleCount: 30, spread: 50, origin: { y: 0.7 } });
-        quizCard.className = "cartoon-card bg-emerald-200 p-6 text-center mb-4";
-        feedbackBox.className = "p-3.5 rounded-2xl border-2 border-slate-800 bg-emerald-100 animate-pop";
-        feedbackBox.innerHTML = `<p class="font-black text-sm text-slate-900">🎉 Correct! (${currentWord.german} - ${currentWord.english})</p>`;
-      } else {
-        playSound('wrong');
-        quizCard.className = "cartoon-card bg-rose-200 p-6 text-center mb-4 animate-shake";
-        feedbackBox.className = "p-3.5 rounded-2xl border-2 border-slate-800 bg-rose-100 animate-pop";
-        feedbackBox.innerHTML = `
-          <p class="font-black text-sm text-slate-900">💥 Incorrect!</p>
-          <p class="text-xs font-bold text-slate-700 mt-0.5">Correct word: <strong>${currentWord.german}</strong> (${currentWord.english})</p>
-        `;
-      }
-
-      feedbackBox.classList.remove('hidden');
-      submitBtn.innerText = 'Next Card (Press Enter ↵)';
-    }
-
     function renderFillQuestion() {
       const currentWord = testWords[currentIndex];
       const sentence = currentWord.example;
-      const germanWord = currentWord.german;
-      
-      const regex = new RegExp(germanWord, 'gi');
-      const maskedSentence = sentence.replace(regex, '_____');
+      const targetGermanWord = currentWord.german;
+
+      let maskedSentence = sentence;
+      const escapedWord = targetGermanWord.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const regex = new RegExp(escapedWord, 'gi');
+      maskedSentence = maskedSentence.replace(regex, '____');
 
       container.innerHTML = `
         <div class="animate-pop">
@@ -2352,15 +2312,14 @@
             </div>
 
             <div id="quizCard" class="cartoon-card bg-rose-100 p-5 sm:p-6 text-center mb-4">
-              <span class="text-xs font-black uppercase text-slate-500 block mb-1">Complete the sentence</span>
-              <h3 class="text-lg sm:text-xl font-black text-slate-900 my-2">"${maskedSentence}"</h3>
-              <p class="text-xs font-bold text-slate-600">Meaning: ${currentWord.english}</p>
+              <h3 class="text-xl sm:text-2xl font-black text-slate-900 mb-2">"${maskedSentence}"</h3>
+              <p class="text-xs font-bold text-slate-600">English clue: <strong>${currentWord.english}</strong></p>
             </div>
 
             <form id="quizForm" onsubmit="checkFillAnswer(event)" class="space-y-3">
               <input type="text" id="answerInput" placeholder="Missing German word..." required autocomplete="off" class="cartoon-input w-full px-4 rounded-2xl text-center text-base sm:text-lg font-bold">
               <button type="submit" id="submitBtn" class="cartoon-btn w-full bg-indigo-500 hover:bg-indigo-600 text-white font-black rounded-2xl text-base sm:text-lg">
-                Check Answer! 🚀
+                Check Blank! 🚀
               </button>
             </form>
 
@@ -2370,10 +2329,9 @@
       `;
 
       setTimeout(() => {
-        speakGerman(currentWord.german);
         const inputElem = document.getElementById('answerInput');
         if (inputElem) inputElem.focus();
-      }, 150);
+      }, 50);
     }
 
     function checkFillAnswer(e) {
@@ -2387,46 +2345,53 @@
       const feedbackBox = document.getElementById('feedbackBox');
       const submitBtn = document.getElementById('submitBtn');
       const quizCard = document.getElementById('quizCard');
-      const currentWord = testWords[currentIndex];
 
-      const isCorrect = checkAnswerMatch(input.value, currentWord.german);
-      updateWordSRS(currentWord.id, isCorrect);
+      const currentWord = testWords[currentIndex];
+      const targetAnswer = currentWord.german;
+      const isCorrect = checkAnswerMatch(input.value, targetAnswer);
 
       input.disabled = true;
       isWaitingForNext = true;
       totalQuestionsAnswered++;
-      if (isCorrect) score++;
+
+      updateWordSRS(currentWord.id, isCorrect);
+      speakGerman(targetAnswer);
 
       if (isCorrect) {
+        score++;
         playSound('correct');
         if (typeof confetti === 'function') confetti({ particleCount: 30, spread: 50, origin: { y: 0.7 } });
         quizCard.className = "cartoon-card bg-emerald-200 p-5 sm:p-6 text-center mb-4";
         feedbackBox.className = "p-3.5 rounded-2xl border-2 border-slate-800 bg-emerald-100 animate-pop";
-        feedbackBox.innerHTML = `<p class="font-black text-sm text-slate-900">🎉 Correct! (${currentWord.german})</p>`;
+        feedbackBox.innerHTML = `<p class="font-black text-sm text-slate-900">🎉 Correct! "${currentWord.example}"</p>`;
       } else {
         playSound('wrong');
         quizCard.className = "cartoon-card bg-rose-200 p-5 sm:p-6 text-center mb-4 animate-shake";
         feedbackBox.className = "p-3.5 rounded-2xl border-2 border-slate-800 bg-rose-100 animate-pop";
         feedbackBox.innerHTML = `
           <p class="font-black text-sm text-slate-900">💥 Incorrect!</p>
-          <p class="text-xs font-bold text-slate-700 mt-0.5">Correct word: <strong>${currentWord.german}</strong></p>
+          <p class="text-xs font-bold text-slate-700 mt-0.5">Correct word: <strong>${targetAnswer}</strong></p>
         `;
       }
 
       feedbackBox.classList.remove('hidden');
       submitBtn.innerText = 'Next Card (Press Enter ↵)';
+      submitBtn.onclick = function(evt) {
+        evt.preventDefault();
+        handleNextQuestion();
+      };
+      submitBtn.focus();
     }
 
     function renderFlashcardQuestion() {
       const currentWord = testWords[currentIndex];
-      const isDeEn = testDirection === 'de_en';
-      const promptText = isDeEn ? currentWord.german : currentWord.english;
+      const promptText = testDirection === 'de_en' ? currentWord.german : currentWord.english;
 
       container.innerHTML = `
         <div class="animate-pop">
           <div class="flex justify-between items-center mb-3 sm:mb-4 pb-2 border-b-2 border-slate-200">
             <span class="text-xs font-bold uppercase tracking-wider text-purple-800 bg-purple-100 px-2.5 py-1 rounded-full border border-purple-300">
-              🃏 Flashcards (${testMode === 'mastery' ? 'Endless Mastery' : testMode === 'pure_endless' ? 'Pure Endless' : 'Normal'})
+              🃏 Flashcards (${testMode})
             </span>
             <button onclick="playSound('click'); renderCategoryView()" class="cartoon-btn bg-rose-200 hover:bg-rose-300 text-slate-800 text-xs px-2.5 rounded-xl shrink-0">
               ✕ Quit
@@ -2443,17 +2408,20 @@
               <div class="bg-purple-400 h-full rounded-full transition-all duration-300" style="width: ${((currentIndex + 1) / testWords.length) * 100}%"></div>
             </div>
 
-            <div id="quizCard" class="cartoon-card bg-purple-100 p-6 text-center mb-4">
-              <div class="flex justify-between items-center mb-2">
-                <span class="text-xs font-black uppercase text-slate-500">${isDeEn ? 'Translate to English' : 'Translate to German'}</span>
-                ${isDeEn ? `<button onclick="speakGerman('${currentWord.german.replace(/'/g, "\\тена")}')" class="cartoon-btn bg-white px-2 rounded-full text-xs" title="Listen">🔊</button>` : ''}
+            <div id="quizCard" class="cartoon-card bg-amber-50 p-6 text-center mb-4 min-h-[180px] flex flex-col justify-center items-center">
+              <div class="flex items-center gap-2 mb-1">
+                <h3 class="text-3xl sm:text-4xl font-black text-slate-900">${promptText}</h3>
+                ${testDirection === 'de_en' ? `
+                  <button onclick="speakGerman('${currentWord.german.replace(/'/g, "\\'")}')" class="cartoon-btn bg-white px-2.5 rounded-full text-base shrink-0">
+                    🔊
+                  </button>
+                ` : ''}
               </div>
-              <h3 class="text-3xl sm:text-4xl font-black text-slate-900 my-3">${promptText}</h3>
-              ${currentWord.example && isDeEn ? `<p class="text-xs text-indigo-700 font-semibold italic mt-2">💬 "${currentWord.example}"</p>` : ''}
+              <p class="text-xs font-bold text-slate-500 mt-1">${testDirection === 'de_en' ? 'Translate to English' : 'Translate to German'}</p>
             </div>
 
             <form id="quizForm" onsubmit="checkFlashcardAnswer(event)" class="space-y-3">
-              <input type="text" id="answerInput" placeholder="Type translation..." required autocomplete="off" class="cartoon-input w-full px-4 rounded-2xl text-center text-base sm:text-lg font-bold">
+              <input type="text" id="answerInput" placeholder="Type your translation..." required autocomplete="off" class="cartoon-input w-full px-4 rounded-2xl text-center text-base sm:text-lg font-bold">
               <button type="submit" id="submitBtn" class="cartoon-btn w-full bg-indigo-500 hover:bg-indigo-600 text-white font-black rounded-2xl text-base sm:text-lg">
                 Check Answer! 🚀
               </button>
@@ -2464,13 +2432,11 @@
         </div>
       `;
 
-      if (isDeEn) {
-        speakGerman(currentWord.german);
-      }
       setTimeout(() => {
+        if (testDirection === 'de_en') speakGerman(currentWord.german);
         const inputElem = document.getElementById('answerInput');
         if (inputElem) inputElem.focus();
-      }, 100);
+      }, 50);
     }
 
     function checkFlashcardAnswer(e) {
@@ -2484,32 +2450,32 @@
       const feedbackBox = document.getElementById('feedbackBox');
       const submitBtn = document.getElementById('submitBtn');
       const quizCard = document.getElementById('quizCard');
+
       const currentWord = testWords[currentIndex];
-
-      const isDeEn = testDirection === 'de_en';
-      const targetField = isDeEn ? currentWord.english : currentWord.german;
-
-      const isCorrect = checkAnswerMatch(input.value, targetField);
-      updateWordSRS(currentWord.id, isCorrect);
+      const targetAnswer = testDirection === 'de_en' ? currentWord.english : currentWord.german;
+      const isCorrect = checkAnswerMatch(input.value, targetAnswer);
 
       input.disabled = true;
       isWaitingForNext = true;
       totalQuestionsAnswered++;
-      if (isCorrect) score++;
+
+      updateWordSRS(currentWord.id, isCorrect);
+      if (testDirection === 'en_de') speakGerman(targetAnswer);
 
       if (isCorrect) {
+        score++;
         playSound('correct');
         if (typeof confetti === 'function') confetti({ particleCount: 30, spread: 50, origin: { y: 0.7 } });
-        quizCard.className = "cartoon-card bg-emerald-200 p-6 text-center mb-4";
+        quizCard.className = "cartoon-card bg-emerald-200 p-6 text-center mb-4 min-h-[180px] flex flex-col justify-center items-center";
         feedbackBox.className = "p-3.5 rounded-2xl border-2 border-slate-800 bg-emerald-100 animate-pop";
         feedbackBox.innerHTML = `<p class="font-black text-sm text-slate-900">🎉 Correct! (${currentWord.german} = ${currentWord.english})</p>`;
       } else {
         playSound('wrong');
-        quizCard.className = "cartoon-card bg-rose-200 p-6 text-center mb-4 animate-shake";
+        quizCard.className = "cartoon-card bg-rose-200 p-6 text-center mb-4 min-h-[180px] flex flex-col justify-center items-center animate-shake";
         feedbackBox.className = "p-3.5 rounded-2xl border-2 border-slate-800 bg-rose-100 animate-pop";
         feedbackBox.innerHTML = `
           <p class="font-black text-sm text-slate-900">💥 Incorrect!</p>
-          <p class="text-xs font-bold text-slate-700 mt-0.5">Correct answer: <strong>${targetField}</strong></p>
+          <p class="text-xs font-bold text-slate-700 mt-0.5">Correct answer: <strong>${targetAnswer}</strong></p>
         `;
         if (testMode === 'mastery') {
           testWords.push(currentWord);
@@ -2518,42 +2484,95 @@
 
       feedbackBox.classList.remove('hidden');
       submitBtn.innerText = 'Next Card (Press Enter ↵)';
+      submitBtn.onclick = function(evt) {
+        evt.preventDefault();
+        handleNextQuestion();
+      };
+      submitBtn.focus();
+    }
+
+    function checkTextAnswer(e) {
+      if (e) e.preventDefault();
+      if (isWaitingForNext) {
+        handleNextQuestion();
+        return;
+      }
+
+      const input = document.getElementById('answerInput');
+      const feedbackBox = document.getElementById('feedbackBox');
+      const submitBtn = document.getElementById('submitBtn');
+      const quizCard = document.getElementById('quizCard');
+
+      const currentWord = testWords[currentIndex];
+      const targetAnswer = currentWord.german;
+      const isCorrect = checkAnswerMatch(input.value, targetAnswer);
+
+      input.disabled = true;
+      isWaitingForNext = true;
+      totalQuestionsAnswered++;
+
+      updateWordSRS(currentWord.id, isCorrect);
+      speakGerman(targetAnswer);
+
+      if (isCorrect) {
+        score++;
+        playSound('correct');
+        if (typeof confetti === 'function') confetti({ particleCount: 30, spread: 50, origin: { y: 0.7 } });
+        quizCard.className = "cartoon-card bg-emerald-200 p-6 text-center mb-4";
+        feedbackBox.className = "p-3.5 rounded-2xl border-2 border-slate-800 bg-emerald-100 animate-pop";
+        feedbackBox.innerHTML = `<p class="font-black text-sm text-slate-900">🎉 Correct! ${currentWord.german} (${currentWord.english})</p>`;
+      } else {
+        playSound('wrong');
+        quizCard.className = "cartoon-card bg-rose-200 p-6 text-center mb-4 animate-shake";
+        feedbackBox.className = "p-3.5 rounded-2xl border-2 border-slate-800 bg-rose-100 animate-pop";
+        feedbackBox.innerHTML = `
+          <p class="font-black text-sm text-slate-900">💥 Incorrect!</p>
+          <p class="text-xs font-bold text-slate-700 mt-0.5">Correct answer: <strong>${targetAnswer}</strong></p>
+        `;
+      }
+
+      feedbackBox.classList.remove('hidden');
+      submitBtn.innerText = 'Next Card (Press Enter ↵)';
+      submitBtn.onclick = function(evt) {
+        evt.preventDefault();
+        handleNextQuestion();
+      };
+      submitBtn.focus();
     }
 
     function handleNextQuestion() {
-      playSound('click');
+      clearSpeedTimer();
       currentIndex++;
-
-      if (testGameMode === 'flashcards' && testMode === 'pure_endless') {
-        testWords.push(testWords[Math.floor(Math.random() * testWords.length)]);
+      if (testMode === 'pure_endless') {
+        testWords.sort(() => 0.5 - Math.random());
+        currentIndex = 0;
       }
 
       if (currentIndex >= testWords.length) {
-        renderTestSummary();
+        renderSummary();
       } else {
         renderTestQuestion();
       }
     }
 
-    function renderTestSummary() {
+    function renderSummary() {
       clearSpeedTimer();
-      isWaitingForNext = false;
       playSound('victory');
 
       if (typeof confetti === 'function') {
-        confetti({ particleCount: 100, spread: 80, origin: { y: 0.5 } });
+        confetti({ particleCount: 80, spread: 70, origin: { y: 0.5 } });
       }
 
       const percent = totalQuestionsAnswered > 0 ? Math.round((score / totalQuestionsAnswered) * 100) : 0;
 
       container.innerHTML = `
         <div class="text-center py-4 sm:py-6 max-w-sm mx-auto animate-pop">
-          <div class="inline-block p-4 cartoon-card bg-amber-300 text-3xl sm:text-4xl mb-3">
+          <div class="inline-block p-3.5 cartoon-card bg-amber-300 text-3xl sm:text-4xl mb-3">
             🏆
           </div>
           <h3 class="text-2xl sm:text-3xl font-black text-slate-900">Session Completed!</h3>
           <p class="text-slate-600 font-bold text-sm sm:text-base mt-1 mb-4">
-            You scored <span class="text-indigo-600 font-black">${score}</span> out of <span class="text-slate-900 font-black">${totalQuestionsAnswered}</span> (${percent}%)
+            You scored <span class="text-indigo-600 font-black">${score}</span> out of <span class="text-slate-900 font-black">${totalQuestionsAnswered}</span> (${percent}%)!
           </p>
 
           <div class="flex gap-2.5 justify-center">
@@ -2568,9 +2587,8 @@
       `;
     }
 
-    // Initialize application on load
+    // Initial render on load
     renderHomeView();
-    updateHeaderStats();
   </script>
 </body>
 </html>
